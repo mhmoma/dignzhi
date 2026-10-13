@@ -1,0 +1,2176 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>赤霄青训营：下克上法则 - 联合青训选秀营</title>
+    <meta name="description" content="成人向现代MOBA电竞群像博弈，四女主深度心智记忆与地图沙盘探索。" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --bg-main: #070b13;
+        --bg-metallic: linear-gradient(180deg, #0e172a 0%, #080d18 50%, #0d1627 100%);
+        --bg-card: #0c1527;
+        --bg-card-hover: #122038;
+        --border-color: #1e355b;
+        --border-subtle: #142540;
+        --text-primary: #f8fafc;
+        --text-secondary: #94a3b8;
+        --text-muted: #64748b;
+        --accent-cyan: #00f0ff;
+        --accent-cyan-glow: rgba(0, 240, 255, 0.4);
+        --accent-blue: #38bdf8;
+        --accent-indigo: #6366f1;
+        --accent-purple: #a78bfa;
+        --accent-amber: #f59e0b;
+        --accent-emerald: #10b981;
+        --font-serif: "Noto Serif SC", "Songti SC", "SimSun", Georgia, serif;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        border-radius: 0 !important;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      body {
+        background: radial-gradient(circle at 50% 0%, #0e203c 0%, #070c16 60%, #04070e 100%);
+        color: var(--text-primary);
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Microsoft YaHei", sans-serif;
+        line-height: 1.5;
+        min-height: 100vh;
+        min-height: 100dvh;
+        overflow-x: hidden;
+        user-select: none;
+      }
+
+      #app-container {
+        max-width: 480px;
+        margin: 0 auto;
+        min-height: 100vh;
+        min-height: 100dvh;
+        display: flex;
+        flex-direction: column;
+        background: 
+          linear-gradient(180deg, rgba(10, 18, 34, 0.98) 0%, rgba(6, 11, 20, 0.99) 40%, rgba(8, 15, 28, 1) 100%),
+          repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0, 240, 255, 0.012) 3px, rgba(0, 240, 255, 0.012) 6px);
+        position: relative;
+        box-shadow: 0 0 70px rgba(0, 240, 255, 0.12), 0 0 120px rgba(0, 0, 0, 0.98);
+        border-left: 1px solid #162b49;
+        border-right: 1px solid #162b49;
+      }
+
+      button {
+        cursor: pointer;
+        border: none;
+        outline: none;
+        font-family: inherit;
+        transition: all 0.1s ease;
+      }
+      button:active {
+        transform: scale(0.97);
+      }
+
+      .btn-primary {
+        background: linear-gradient(135deg, #0284c7 0%, #00f0ff 50%, #2563eb 100%);
+        color: #031322;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        padding: 0.75rem 1.25rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 0 16px rgba(0, 240, 255, 0.4);
+        border: 1px solid #00f0ff;
+        text-shadow: 0 1px 1px rgba(255, 255, 255, 0.2);
+      }
+      .btn-primary:hover {
+        background: linear-gradient(135deg, #0369a1 0%, #38bdf8 50%, #1d4ed8 100%);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6), 0 0 24px rgba(0, 240, 255, 0.65);
+      }
+
+      .btn-secondary {
+        background: linear-gradient(145deg, #0f1c32 0%, #091222 60%, #0e1a2e 100%);
+        color: var(--text-primary);
+        border: 1px solid #1e355b;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+        padding: 0.65rem 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+      }
+      .btn-secondary:hover {
+        background: linear-gradient(145deg, #162947 0%, #0d192f 60%, #13243f 100%);
+        border-color: #00f0ff;
+        color: #ffffff;
+      }
+
+      .btn-subtle {
+        background: rgba(14, 25, 45, 0.7);
+        color: var(--text-secondary);
+        border: 1px solid #193154;
+        padding: 0.35rem 0.55rem;
+        font-size: 0.75rem;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.3rem;
+      }
+      .btn-subtle:hover {
+        background: #172d4c;
+        border-color: #00f0ff;
+        color: var(--text-primary);
+      }
+
+      .icon-btn {
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(12, 21, 38, 0.85);
+        border: 1px solid #1a2f52;
+        color: var(--text-secondary);
+        font-size: 0.85rem;
+        transition: all 0.12s ease;
+      }
+      .icon-btn:hover {
+        border-color: #00f0ff;
+        color: #00f0ff;
+        background: #152744;
+        box-shadow: 0 0 10px rgba(0, 240, 255, 0.35);
+      }
+
+      /* Compact High-End Esports HUD */
+      .hud-header {
+        position: sticky;
+        top: 0;
+        z-index: 40;
+        background: linear-gradient(180deg, rgba(8, 15, 28, 0.98) 0%, rgba(6, 11, 20, 0.95) 100%);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid #162b49;
+        padding: 0.35rem 0.65rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
+      }
+
+      /* Card Styling with Cyber Ice Bar */
+      .card {
+        background: linear-gradient(145deg, #0d172a 0%, #070e1b 50%, #0c1526 100%);
+        border: 1px solid #1e355b;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03), 0 4px 16px rgba(0, 0, 0, 0.6);
+        padding: 1rem;
+        position: relative;
+      }
+      .card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 2px;
+        height: 100%;
+        background: linear-gradient(180deg, #00f0ff 0%, #2563eb 80%, transparent 100%);
+      }
+
+      .drawer-overlay {
+        position: fixed;
+        inset: 0;
+        background-color: rgba(3, 7, 14, 0.88);
+        backdrop-filter: blur(6px);
+        z-index: 100;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        animation: fadeIn 0.15s ease;
+      }
+      @media (min-width: 640px) {
+        .drawer-overlay {
+          align-items: center;
+          padding: 1rem;
+        }
+      }
+
+      .drawer-content {
+        width: 100%;
+        max-width: 480px;
+        background: linear-gradient(180deg, #0d172a 0%, #060b14 100%);
+        border: 1px solid #1e355b;
+        max-height: 85vh;
+        display: flex;
+        flex-direction: column;
+        box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.95), 0 0 25px rgba(0, 240, 255, 0.15);
+        overflow: hidden;
+      }
+
+      .drawer-header {
+        padding: 0.75rem 1rem;
+        border-bottom: 1px solid #162b49;
+        background: rgba(14, 25, 45, 0.75);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .drawer-body {
+        padding: 0.85rem;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 0.65rem;
+      }
+
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.2rem;
+        padding: 0.1rem 0.35rem;
+        font-size: 0.6rem;
+        font-weight: 800;
+        font-family: ui-monospace, SFMono-Regular, monospace;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+      .badge-cyan { background: rgba(0, 240, 255, 0.15); color: #67e8f9; border: 1px solid rgba(0, 240, 255, 0.45); }
+      .badge-blue { background: rgba(2, 132, 199, 0.2); color: #bae6fd; border: 1px solid rgba(56, 189, 248, 0.5); }
+      .badge-amber { background: rgba(180, 83, 9, 0.25); color: #fde68a; border: 1px solid rgba(245, 158, 11, 0.5); }
+      .badge-purple { background: rgba(126, 34, 206, 0.25); color: #e9d5ff; border: 1px solid rgba(192, 132, 252, 0.5); }
+      .badge-emerald { background: rgba(5, 150, 105, 0.2); color: #a7f3d0; border: 1px solid rgba(16, 185, 129, 0.5); }
+
+      /* Input Sharpness */
+      input[type="text"], textarea {
+        background: #060b13 !important;
+        border: 1px solid #1e355b !important;
+        border-radius: 0 !important;
+      }
+      input[type="text"]:focus, textarea:focus {
+        border-color: #00f0ff !important;
+        box-shadow: 0 0 10px rgba(0, 240, 255, 0.3) !important;
+      }
+
+      @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+      @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+      .animate-pulse { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+    </style>
+  </head>
+  <body>
+    <div id="app-container">
+      <!-- Mounted via Vanilla JS Game Engine -->
+    </div>
+
+    <script>
+      (function () {
+        // --- 1. World & Factions Lore ---
+        const TEAMS = [
+          {
+            id: 'chixiao',
+            name: '赤霄战队 (深蓝新王)',
+            badge: 'KPL新晋霸主 · 优胜劣汰',
+            desc: '崇尚绝对野区进攻与窒息压制。揭幕战以10分21秒平推三冠王，当家花旦中单林鸢刚凭不知火舞斩获MVP，正暗中依仗专属野王保驾护航。',
+            primaryHeroine: 'lin_yuan',
+            heroineLead: '林鸢紧盯着你，领口微敞的队服下是傲慢与难以启齿的战术依赖。'
+          },
+          {
+            id: 'dome',
+            name: '穹顶战队 (陨落豪门)',
+            badge: '三冠底蕴 · 极度严格',
+            desc: '刚刚在揭幕战惨遭暗影主宰十秒强推水晶。铁血功勋教练秦织推着金丝眼镜，急需你这样打破传统数据模型的超维野王重塑体系。',
+            primaryHeroine: 'qin_zhi',
+            heroineLead: '总教练秦织翻动着战术平板，目光如极地冰霜审视你的分均经济。'
+          },
+          {
+            id: 'huanxing',
+            name: '幻星战队 (资本星工厂)',
+            badge: '资本巨头 · 大乔朵莉亚体系',
+            desc: '全联盟最有钱的造星帝国。商业总监兼冠军游走苏妲深谙KPL台前幕后权力运作，企图将你的极限微操包装为数千万商业帝国。',
+            primaryHeroine: 'su_da',
+            heroineLead: '商业总监苏妲狭长狐狸眼波流转，指尖把玩着战术平板，极度慕强。'
+          },
+          {
+            id: 'poxiao',
+            name: '破晓战队 (绝境黑马)',
+            badge: '单核狂暴 · 选秀状元',
+            desc: '经济全盘倾斜在发育路的草根俱乐部。天才射手沐沐正咬牙狂点公孙离，叫嚣要用机关道1v1父子局将你彻底打碎。',
+            primaryHeroine: 'mu_mu',
+            heroineLead: '天才射手沐沐戴着特调电竞指套，挑衅地将比赛机拍在桌面。'
+          }
+        ];
+
+        const ROLES = [
+          { id: 'Jg', label: '打野 Jg (野核领袖)', desc: '绝活：镜、澜、露娜、裴擒虎。控龙卡血线、掠夺野区、支配全图胜负。' },
+          { id: 'Mid', label: '中单 Mid (法刺核心)', desc: '绝活：不知火舞、上官婉儿、貂蝉、海月。秒换辉月、闪现开团与残血收割。' },
+          { id: 'ADC', label: '射手 ADC (后期大核)', desc: '绝活：公孙离、孙尚香、马可波罗、敖隐。极限走A、瞬息秒换装与终极输出。' },
+          { id: 'Sup', label: '游走 Sup (战术大脑)', desc: '绝活：大乔、朵莉亚、鲁班大师、张飞。电梯流控图、大招刷新、奔狼强开。' },
+          { id: 'Top', label: '对抗路 Top (孤胆战边)', desc: '绝活：花木兰、关羽、马超、亚连。抢四单杀、断线牵制与绕后瞬秒后排。' }
+        ];
+
+        // --- 2. Explorable Map System ---
+        const LOCATIONS = [
+          { id: 'training_center', name: '青训中心', icon: '🏛️', desc: '充满高压与触屏摩擦声的训练室，滚动着天梯榜与冷眼审视。' },
+          { id: 'arena', name: '青岚电竞馆', icon: '🏟️', desc: '喧嚣震天的KPL顶级舞台，选手通道昏暗，更衣室气压极低。' },
+          { id: 'mall', name: '繁华商场', icon: '🛍️', desc: '选手挥霍奖金的高端商圈，私密咖啡厅与战队专属VIP赞助专柜。' },
+          { id: 'park', name: '湿地公园', icon: '🌲', desc: '临水湖畔昏黄路灯，卸下防备分享温热啤酒与真心。' },
+          { id: 'dorm', name: '战队宿舍', icon: '🛏️', desc: '隔音极差的私密领地，夜袭、洗手间撞见与未关麦事故。' },
+          { id: 'apartment', name: '教练公寓', icon: '🏢', desc: '基地顶层的绝对私密领地，极简冷酷，专属单独特训与BP拆解。' }
+        ];
+
+        // --- 3. Four Heroines Lore (Honor of Kings / KPL) ---
+        const INITIAL_NPCS = {
+          lin_yuan: {
+            id: 'lin_yuan',
+            name: '林鸢',
+            role: '赤霄首发中单 · 高岭之花',
+            kplRole: 'KPL顶流门面 · 法刺明星',
+            signatureHeroes: ['不知火舞', '上官婉儿', '貂蝉', '海月'],
+            avatar: '鸢',
+            favor: 30,
+            submission: 45,
+            memory: '极度依仗你在揭幕战把蓝buff和残血人头喂到不知火舞嘴边，内心深陷套间密约带来的羞耻与依赖',
+            secrets: [
+              '在基地套间玄关签署出卖尊严协议：赛场全听林冬夏指挥',
+              '揭幕战不知火舞10-0-0神话战绩与42%输出占比全靠林冬夏打残控线喂饭'
+            ]
+          },
+          su_da: {
+            id: 'su_da',
+            name: '苏妲',
+            role: '商业总监兼游走 · 腹黑狐狸',
+            kplRole: '一队首发游走 · 大乔朵莉亚绝活',
+            signatureHeroes: ['大乔', '朵莉亚', '鲁班大师', '孙膑'],
+            avatar: '妲',
+            favor: 45,
+            submission: 20,
+            memory: '一眼看穿揭幕战是你在野区控龙算血线强行为林鸢造神，对你近乎妖异的算力充满强烈的慕强与占有欲',
+            secrets: [
+              '掌控各大战队转会暗箱交易与百万商业合同',
+              '私下收集了林冬夏所有小号在巅峰赛第一的打野第一视角录像'
+            ]
+          },
+          qin_zhi: {
+            id: 'qin_zhi',
+            name: '秦织',
+            role: '总教练/数据主管 · 铁血冰山',
+            kplRole: 'KPL三冠王功勋教头 · BP战术大师',
+            signatureHeroes: ['数据模型', '克制链拆解', '全图视野运营'],
+            avatar: '织',
+            favor: 20,
+            submission: 10,
+            memory: '认为你是缺乏战术服从性的巅峰赛Rank野猴子，准备用极限逆风高地防守测试击碎你的傲气',
+            secrets: [
+              '曾因一次关键BP失误引咎辞职，誓要打造不依赖选手灵光一闪的绝对理性全胜战队',
+              '平板里偷偷记录了林冬夏超过所有职业选手的0.08秒极限惩击反应曲线'
+            ]
+          },
+          mu_mu: {
+            id: 'mu_mu',
+            name: '沐沐',
+            role: '同届天才射手 · 傲娇双马尾',
+            kplRole: '青训发育路大核 · 选秀状元热门',
+            signatureHeroes: ['公孙离', '孙尚香', '马可波罗', '戈娅'],
+            avatar: '沐',
+            favor: 15,
+            submission: 5,
+            memory: '视你为空降夺走状元首发名额的宿敌，随时准备用墨家机关道1v1狂暴公孙离Solo教你做人',
+            secrets: [
+              '私下通宵复盘你使用澜与镜的多段无敌帧切屏细节直到凌晨五点',
+              '嘴上扬言要让你倒垃圾，其实内心渴望拥有一个能把对面全切死、把红buff留给自己的专属野爹'
+            ]
+          }
+        };
+
+        const INITIAL_OBJECTS = [
+          {
+            id: 'obj_pact',
+            name: '套间玄关私密战术协议',
+            category: 'contract',
+            description: '林鸢亲笔手签的让渡书，注明“赛场听凭川指令调配，私下承诺绝不毁约”。',
+            riskLevel: 'HIGH',
+            obtainedAt: '签约室暗格'
+          },
+          {
+            id: 'obj_disk',
+            name: '10分21秒不知火舞第一视角录像',
+            category: 'video',
+            description: '详细记录了林冬夏如何精准卡算血线、将敌方三路残血与暗影主宰先锋全部喂到林鸢不知火舞嘴里的全过程。',
+            riskLevel: 'MEDIUM',
+            obtainedAt: '青岚电竞馆后台'
+          },
+          {
+            id: 'obj_fingersleeve',
+            name: '特调导电银纤维电竞指套',
+            category: 'equipment',
+            description: '林冬夏专属防滑指套，适配极限三指切屏与0.1ms触控反应，印有极光暗纹【川】。',
+            riskLevel: 'LOW',
+            obtainedAt: '背包外设仓'
+          }
+        ];
+
+        // --- Core Permanent Memories (防失忆核心记忆库) ---
+        const INITIAL_CORE_MEMORIES = [
+          {
+            id: 'mem_pact',
+            tag: '玄关密约',
+            role: '林鸢',
+            content: '赛前青岚电竞馆套间玄关处，林鸢为了保住首发并获得10分钟超神MVP，签署尊严妥协协议，承诺私下无条件服从指令。把柄在手。',
+            pinned: true,
+            time: '揭幕战赛前'
+          },
+          {
+            id: 'mem_godmaker',
+            tag: '野区真相',
+            role: '全员',
+            content: '揭幕战10分21秒平推三冠王，实为林冬夏澜/镜野核极限控血让头强行造神，林鸢斩获42%输出超神MVP。',
+            pinned: true,
+            time: '揭幕战终局'
+          },
+          {
+            id: 'mem_suda_gaze',
+            tag: '苏妲慕强',
+            role: '苏妲',
+            content: '苏妲一眼看破让头真相，对林冬夏展现出狂热慕强与占有欲，暗中调查其全网巅峰第一全部录像。',
+            pinned: true,
+            time: '青训入营'
+          },
+          {
+            id: 'mem_qinzhi_test',
+            tag: '铁血考核',
+            role: '秦织',
+            content: '总教练秦织视林冬夏为散漫Rank路人王，企图以抗压局测试驯服，却被其超维心算与全局BP撼动认知。',
+            pinned: true,
+            time: '青训入营'
+          },
+          {
+            id: 'mem_mumu_solo',
+            tag: '约战对决',
+            role: '沐沐',
+            content: '青训天才射手沐沐不服林冬夏空降，发起墨家机关道公孙离1v1约战，输者愿赌服输当看门狗。',
+            pinned: true,
+            time: '青训入营'
+          }
+        ];
+
+        // --- Player Comprehensive Profile & Telemetry (玩家状态系统) ---
+        const INITIAL_PLAYER_PROFILE = {
+          id: '川 (林冬夏)',
+          teamRole: 'Jg / 全能野核领袖',
+          rating: 'SSR · 核心战略变量',
+          rankScore: '巅峰2580分 · 全国第1',
+          kda: '18.4 (天梯胜率 86.7%)',
+          condition: '绝对冷彻 · 算无遗策',
+          focusLevel: 98,
+          heartRate: 64,
+          peakApm: 420,
+          stressResist: 95,
+          activeBuffs: [
+            { name: '赛前密约支配者', desc: '持有林鸢出卖尊严协议，对林鸢拥有绝对心理与指令压制' },
+            { name: '绝对微秒算力', desc: '野怪血量与英雄斩杀线心算至个位数，控龙惩击率100%' },
+            { name: '神之造神者', desc: '曾以精准让头将中单喂成超神MVP，引发苏妲极端慕强与占有欲' },
+            { name: '天梯霸榜之王', desc: '全国巅峰第一战力，对沐沐等新秀具备天然威慑光环' }
+          ]
+        };
+
+        // --- High-End Haptic Audio Synthesizer ---
+        let audioCtx = null;
+        let soundEnabled = localStorage.getItem('chixiao_sound_on') !== 'false';
+
+        function playSfx(type) {
+          if (!soundEnabled) return;
+          try {
+            if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            if (audioCtx.state === 'suspended') audioCtx.resume();
+            const now = audioCtx.currentTime;
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            if (type === 'click') {
+              osc.type = 'sine';
+              osc.frequency.setValueAtTime(1000, now);
+              osc.frequency.exponentialRampToValueAtTime(450, now + 0.035);
+              gain.gain.setValueAtTime(0.06, now);
+              gain.gain.linearRampToValueAtTime(0.001, now + 0.035);
+              osc.start(now);
+              osc.stop(now + 0.035);
+            } else if (type === 'confirm') {
+              osc.type = 'triangle';
+              osc.frequency.setValueAtTime(260, now);
+              osc.frequency.exponentialRampToValueAtTime(120, now + 0.1);
+              gain.gain.setValueAtTime(0.09, now);
+              gain.gain.linearRampToValueAtTime(0.001, now + 0.1);
+              osc.start(now);
+              osc.stop(now + 0.1);
+            } else if (type === 'tap') {
+              osc.type = 'sine';
+              osc.frequency.setValueAtTime(650, now);
+              gain.gain.setValueAtTime(0.04, now);
+              gain.gain.linearRampToValueAtTime(0.001, now + 0.025);
+              osc.start(now);
+              osc.stop(now + 0.025);
+            }
+          } catch (e) {}
+        }
+
+        function toggleSound() {
+          soundEnabled = !soundEnabled;
+          localStorage.setItem('chixiao_sound_on', soundEnabled ? 'true' : 'false');
+          if (soundEnabled) playSfx('confirm');
+          render();
+        }
+
+        // --- 4. Game State & Persistence ---
+        const AUTOSAVE_KEY = 'chixiao_draft_autosave_v2';
+        const SLOT_KEY = 'chixiao_draft_slot_v2_';
+
+        let gameState = {
+          stage: 'TITLE', // 'TITLE' | 'DRAFT_SETUP' | 'GAMEPLAY'
+          characterName: '林冬夏',
+          selectedTeam: TEAMS[0].id,
+          selectedRole: 'Jg',
+          location: 'training_center',
+          timeOfDay: '下午 14:00',
+          stats: {
+            mechanics: 90,  // 操作 (路人王)
+            jungleControl: 85, // 意识 / 控图
+            coldMind: 80,   // 心理博弈 / 冷彻
+            prestige: 30    // 战队声望
+          },
+          funds: 5000,
+          npcs: JSON.parse(JSON.stringify(INITIAL_NPCS)),
+          objects: JSON.parse(JSON.stringify(INITIAL_OBJECTS)),
+          coreMemories: JSON.parse(JSON.stringify(INITIAL_CORE_MEMORIES)),
+          playerProfile: JSON.parse(JSON.stringify(INITIAL_PLAYER_PROFILE)), battleMetrics: { kdaContribution: 88, jungleAggression: 92, laneControlRate: 82 },
+          currentScene: {
+            title: '青训营摸底考核 · 巅峰路人王入局',
+            atmosphere: '防盗门推开，中央大屏正4K慢放昨晚10分21秒不知火舞平推三冠王水晶的镜头，几十道充斥敌意的目光瞬间扫视而来。',
+            narrative: `“砰——”
+沉重的电竞训练室静音门被推开，冷气伴随着高刷电竞屏的微光扑面而来。天花板中央的巨幅屏幕上，正以4K超清逐帧慢放着昨晚常规赛揭幕战的终局画面：
+【VICTORY】。
+10分21秒。不知火舞10-0-0，伤害占比42%，斩获当场MVP。
+但在慢放镜头下，懂行的人都能看清——是在暗影主宰坑里，那头嗜血的刺客野核将敌方五人全部刮至残血、算准了血线强行停手，才将这泼天的富贵硬生生塞进了中单林鸢的嘴里。
+
+你背着装有比赛专用机和特调指套的外设包站在门口，神色平静，连一滴汗都没有。
+
+“你就是巅峰赛霸榜三个月的那个路人王，代号‘川’的林冬夏？”
+清脆而冰冷的高跟鞋声由远及近。主教练【秦织】推了推鼻梁上的金丝眼镜，一身修身黑西装勾勒出冷冽线条。她划动手里的战术数据平板，头也不抬：“天梯分高，不代表你能打职业。职业赛场要的是绝对的兵线运营和视野服从，不是个人英雄主义。你的工位在最后一排，先去打十局逆风抗压局。”
+
+“秦教练，何必对这么有潜力的野王弟弟这么凶嘛~”
+门框边传来一阵轻慢妖娆的调笑。一队首发游走兼商业总监【苏妲】倚在走廊边，狭长的狐狸眼微微上挑，视线在你骨节分明的手指上游移：“昨晚那局不知火舞是怎么‘超神’的，别人看不懂，姐姐这双眼睛可亮着呢。”
+
+而在苏妲身后的玻璃走廊外，刚在采访席上万众瞩目的一队明星中单【林鸢】正抱臂站立。她深蓝相间的战队队服领口习惯性微解，露出极度惹眼的雪白锁骨。当她的视线穿过玻璃与你相撞时，呼吸骤然一紧，下意识咬住了下唇——那是赛前在套间玄关处出卖了尊严、被迫与你立下战术密约的惊慌与战栗。
+
+就在这时，坐在第一排的青训营天才射手【沐沐】猛地摘下特调指套，将比赛机重重摔在桌面上，咬牙起身瞪着你：“喂！听说你一来就占了首发考察名额？狂什么狂！敢不敢现在跟我进墨家机关道Solo一把？我拿公孙离，你要是输了，就滚出青训营去给全队倒一个月垃圾！”
+
+四道目光同时锁定在你身上——冰冷的数据教头、洞察一切的腹黑狐狸、受制于你的虚荣女神，以及怒火中烧的傲娇射手。
+你拉开外设包拉链，取出指套。你打算如何打破僵局？`,
+            choices: [
+              {
+                id: 'c_accept_mumu',
+                text: '戴上专属指套，掏出特调比赛机放在沐沐桌前：“墨家机关道Solo？可以。我拿澜。输了不用倒垃圾，从明天起双排，老老实实当我的红buff看门狗。”',
+                intent: '机关道Solo(澜)',
+                hint: '在1v1中正面摧毁傲娇射手沐沐心智'
+              },
+              {
+                id: 'c_confront_qinzhi',
+                text: '迎上秦织冷冽的审视，递上破译的战术平板：“抗压局没意义。看一眼我复盘的第三手BP克制链，你敢照这个思路打吗，教练？”',
+                intent: '震碎秦织BP模型',
+                hint: '用超越版本的全局BP大局观动摇秦织'
+              },
+              {
+                id: 'c_tease_suda',
+                text: '侧身走向门框边的苏妲，俯身靠近耳畔：“狐狸眼看够了么？大乔公孙离体系打得不错，想拉我进幻星，先想想你能出多少定金。”',
+                intent: '试探苏妲慕强软肋',
+                hint: '反客为主挑逗苏妲，直戳其商业软肋'
+              },
+              {
+                id: 'c_glance_linyuan',
+                text: '隔着隔音玻璃对准林鸢的视线，从口袋里露出昨晚签下的玄关战术协议与套间房卡的一角，冷漠微勾嘴角。',
+                intent: '出示林鸢玄关房卡',
+                hint: '激活客体把柄，让在镜头前光芒万丈的林鸢当众体会深层臣服'
+              }
+            ]
+          },
+          dialogueHistory: [],
+          isLoading: false,
+          recentToast: null,
+          ui: {
+            showNPCModal: false,
+            showObjectModal: false,
+            showSaveModal: false,
+            showMapModal: false,
+            showStatusPanel: false,
+            showMemoryModal: false
+          }
+        };
+
+        // --- Save System ---
+        function getSaveSlots() {
+          const res = [];
+          for (let i = 1; i <= 3; i++) {
+            try {
+              const raw = localStorage.getItem(SLOT_KEY + i);
+              res.push(raw ? JSON.parse(raw) : null);
+            } catch {
+              res.push(null);
+            }
+          }
+          return res;
+        }
+
+        function getAutoSave() {
+          try {
+            const raw = localStorage.getItem(AUTOSAVE_KEY);
+            return raw ? JSON.parse(raw) : null;
+          } catch {
+            return null;
+          }
+        }
+
+        function saveToSlot(slot) {
+          const data = {
+            slot,
+            updatedAt: new Date().toLocaleString('zh-CN', { hour12: false }),
+            title: gameState.currentScene.title,
+            name: gameState.characterName,
+            team: gameState.selectedTeam,
+            role: gameState.selectedRole,
+            loc: gameState.location,
+            time: gameState.timeOfDay,
+            stats: { ...gameState.stats },
+            funds: gameState.funds,
+            npcs: JSON.parse(JSON.stringify(gameState.npcs)),
+            objects: JSON.parse(JSON.stringify(gameState.objects)),
+            coreMemories: JSON.parse(JSON.stringify(gameState.coreMemories)),
+            playerProfile: JSON.parse(JSON.stringify(gameState.playerProfile)),
+            scene: JSON.parse(JSON.stringify(gameState.currentScene)),
+            history: gameState.dialogueHistory.slice(-20)
+          };
+          localStorage.setItem(SLOT_KEY + slot, JSON.stringify(data));
+          showToast('已保存至槽位 0' + slot);
+        }
+
+        function triggerAutoSave() {
+          const data = {
+            slot: 0,
+            updatedAt: new Date().toLocaleString('zh-CN', { hour12: false }),
+            title: gameState.currentScene.title,
+            name: gameState.characterName,
+            team: gameState.selectedTeam,
+            role: gameState.selectedRole,
+            loc: gameState.location,
+            time: gameState.timeOfDay,
+            stats: { ...gameState.stats },
+            funds: gameState.funds,
+            npcs: JSON.parse(JSON.stringify(gameState.npcs)),
+            objects: JSON.parse(JSON.stringify(gameState.objects)),
+            coreMemories: JSON.parse(JSON.stringify(gameState.coreMemories)),
+            playerProfile: JSON.parse(JSON.stringify(gameState.playerProfile)),
+            scene: JSON.parse(JSON.stringify(gameState.currentScene)),
+            history: gameState.dialogueHistory.slice(-20)
+          };
+          localStorage.setItem(AUTOSAVE_KEY, JSON.stringify(data));
+        }
+
+        function loadFromSlot(slot) {
+          if (!slot) return;
+          gameState.characterName = slot.name || '林冬夏';
+          gameState.selectedTeam = slot.team || TEAMS[0].id;
+          gameState.selectedRole = slot.role || 'Jg';
+          gameState.location = slot.loc || 'training_center';
+          gameState.timeOfDay = slot.time || '下午 14:00';
+          gameState.stats = { ...slot.stats };
+          gameState.funds = slot.funds || 5000;
+          gameState.npcs = JSON.parse(JSON.stringify(slot.npcs || INITIAL_NPCS));
+          gameState.objects = JSON.parse(JSON.stringify(slot.objects || INITIAL_OBJECTS));
+          gameState.coreMemories = JSON.parse(JSON.stringify(slot.coreMemories || INITIAL_CORE_MEMORIES));
+          gameState.playerProfile = JSON.parse(JSON.stringify(slot.playerProfile || INITIAL_PLAYER_PROFILE));
+          gameState.currentScene = JSON.parse(JSON.stringify(slot.scene));
+          gameState.dialogueHistory = slot.history || [];
+          gameState.stage = 'GAMEPLAY';
+          gameState.ui.showSaveModal = false;
+          showToast('已载入进度');
+          render();
+        }
+
+        function showToast(msg) {
+          gameState.recentToast = msg;
+          render();
+          setTimeout(() => {
+            if (gameState.recentToast === msg) {
+              gameState.recentToast = null;
+              render();
+            }
+          }, 3500);
+        }
+
+        // --- Core Engine Interaction ---
+        async function runStoryStep(choiceOrText, moveLocation) {
+          gameState.isLoading = true;
+          if (moveLocation) {
+            gameState.location = moveLocation;
+          }
+          render();
+
+          const payload = {
+            characterName: gameState.characterName,
+            selectedTeam: TEAMS.find(t => t.id === gameState.selectedTeam)?.name || '赤霄战队',
+            selectedRole: gameState.selectedRole,
+            currentLocation: LOCATIONS.find(l => l.id === gameState.location)?.name || '青训中心',
+            currentTime: gameState.timeOfDay,
+            mapMoveTarget: moveLocation ? LOCATIONS.find(l => l.id === moveLocation)?.name : null,
+            stats: gameState.stats,
+            npcs: gameState.npcs,
+            objects: gameState.objects,
+            coreMemories: gameState.coreMemories,
+            playerProfile: gameState.playerProfile,
+            history: gameState.dialogueHistory.slice(-12),
+            choiceSelected: typeof choiceOrText === 'object' ? choiceOrText : null,
+            customInput: typeof choiceOrText === 'string' ? choiceOrText : null
+          };
+
+          let response = null;
+
+          try {
+            const res = await fetch('/api/story/next', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(payload)
+            });
+            if (res.ok) {
+              const data = await res.json();
+              if (data && data.narrative) { response = data; if (data.battleMetrics) gameState.battleMetrics = data.battleMetrics; }
+            }
+          } catch (e) {
+            console.warn('API busy, using robust fallback engine:', e);
+          }
+
+          if (!response) {
+            response = localDeterministicBranch(payload);
+          }
+
+          applyResult(response, typeof choiceOrText === 'object' ? choiceOrText.text : (choiceOrText || `前往[${payload.currentLocation}]`));
+        }
+
+        function localDeterministicBranch(p) {
+          const loc = gameState.location;
+          const text = (p.customInput || (p.choiceSelected ? p.choiceSelected.text : '')).trim();
+
+          // Solo / Mu Mu (墨家机关道 / 澜 / 公孙离)
+          if (text.includes('沐沐') || text.includes('Solo') || text.includes('机关道') || text.includes('公孙离') || text.includes('澜') || text.includes('单挑')) {
+            return {
+              title: '墨家机关道 1v1 · 狂暴公孙离 vs 潜水猎手澜',
+              atmosphere: '训练室几十名青训生屏息围在身后，防滑指套在发热特调触控屏上爆速滑动，音效声震耳欲聋。',
+              location: '青训中心',
+              timeOfDay: '下午 14:40',
+              narrative: `“开房间！墨家机关道，输了谁反悔谁就是狗！”沐沐猛地戴上粉黑相间的特调指套，利落开启自定义1v1。
+
+两分三十秒，全场死一般的寂静。
+沐沐选出胜率超高的【狂暴公孙离】，一级凭借一技能【岑中归月】前滑位移疯狂压血线，枫之印记爆炸叠满。就在她开启狂暴、自以为胜券在握的刹那，你修长的手指在屏幕上方三指飞速切屏——
+你操控的【澜】以毫秒级微操在兵线缝隙间下潜。精准卡算公孙离二技能【霜叶舞】击落飞行物的0.5秒后摇，一技能【破浪】破水而出！
+大招【处决】金色刀芒爆闪，生生将想要回伞脱身的公孙离凌空推翻出塔外防御区，紧接着二技能【断空】三连旋转刮刀卡刀普攻，伤害数字爆出一串极光真伤！
+
+【FIRST BLOOD】！
+冰冷的播报响彻训练室。
+
+沐沐的双手僵在温热的比赛机屏幕上，指套下的指尖剧烈颤抖，白皙耳根涨得滴血。她死死咬着下唇，泪水在眼眶里打转，震惊地盯着结算面板：“你……你怎么知道我伞的回位死角的？！不可能……你连技能CD都算到小数点后两位了吗？！”
+
+站在你身侧的主教练【秦织】推了推金丝眼镜，手里的战术平板停顿了整整三秒，镜片后的眸光剧烈震动。
+门框处的【苏妲】笑得花枝乱颤，狭长的狐狸眼里全是对你恐怖算力的狂热占有欲；而在玻璃长廊外，一队明星中单【林鸢】下意识抓紧了微敞的领口，雪白锁骨微微起伏，眼神里全是被支配的惊慌。`,
+              npcUpdates: [
+                { npcId: 'mu_mu', favorDelta: 18, submissionDelta: 25, newMood: '在墨家机关道被你的澜用极致刀法单杀，傲娇心智全面瓦解，开始别扭地崇拜你的野王微操' },
+                { npcId: 'qin_zhi', favorDelta: 10, submissionDelta: 8, newMood: '惊骇于你对王者荣耀英雄技能后摇与血线伤害的变态心算，原有的数据模型受到重创' },
+                { npcId: 'su_da', favorDelta: 15, suspicionDelta: -10, newMood: '彻底确信你拥有支配KPL赛场的野核统御力，迫不及待想要签下你的全线商业代理' }
+              ],
+              statChanges: { mechanics: 4, prestige: 6 },
+              newCoreMemories: [
+                '在青训中心墨家机关道1v1中，林冬夏操控澜精准卡公孙离伞位后摇单杀沐沐，沐沐傲娇心智受创并愿赌服输'
+              ],
+              playerStatusUpdate: {
+                condition: '首战封神 · 绝对压制',
+                focusDelta: 2,
+                heartRateDelta: 4
+              },
+              choices: [
+                {
+                  id: 'c_mumu_subdue',
+                  text: '拎起发烫的比赛机，冷眼俯视泪光打转的沐沐：“认清现实了么？今晚起双排，老老实实听我报点控红buff。”',
+                  intent: '霸道驯服沐沐',
+                  hint: '彻底巩固对傲娇射手的战术支配'
+                },
+                {
+                  id: 'c_qinzhi_shock',
+                  text: '转头迎向金丝眼镜后神色震撼的秦织：“两分半单杀顶级公孙离，教练，你的数据模型需要重写了。”',
+                  intent: '逼迫秦织让权',
+                  hint: '击碎铁血教练对路人王的成见'
+                },
+                {
+                  id: 'c_suda_provoke',
+                  text: '漫步经过门框边的苏妲身侧：“狐狸姐姐，看清我的澜是怎么收割的了么？转会费开不够可请不起我。”',
+                  intent: '反撩苏妲狐狸眼',
+                  hint: '刺激商业总监的慕强占有欲'
+                },
+                {
+                  id: 'c_linyuan_summon',
+                  text: '拿出手机当着众人的面，向玻璃长廊外惊慌的林鸢发去一条私密短信：“今晚复盘后，套间玄关等我。”',
+                  intent: '套间私密传唤',
+                  hint: '激活出卖尊严协议，给林鸢施加窒息压力'
+                }
+              ]
+            };
+          }
+
+          // Lin Yuan / Suite / Key / 房卡 / 玄关 / 套间
+          if (text.includes('林鸢') || text.includes('房卡') || text.includes('玄关') || text.includes('套间') || text.includes('扣子') || text.includes('中单') || text.includes('不知火舞')) {
+            return {
+              title: '顶层套间玄关 · 绝对支配的契约履行',
+              atmosphere: '基地顶层行政套房柔和的壁灯下，空气中弥漫着高定香水与微微出汗的体温气息。',
+              location: '顶层套间',
+              timeOfDay: '夜晚 22:30',
+              narrative: `“滴——”感应门锁轻响，你推开了顶层套间的实木大门。
+
+玄关的阴影里，刚刚在聚光灯下享受万千粉丝呼喊的当家花旦【林鸢】正僵立在那里。
+她果然穿着白天的战队队服，胸前整整齐齐地解开了两颗纽扣，露出一大片由于紧张而泛起粉红的雪白锁骨与起伏的饱满弧度。在镜头前不可一世的傲慢早已荡然无存，美眸里带着泪光与屈辱，下唇几乎咬出了血痕。
+
+“你……你真的来了……”她嗓音微颤，十指紧紧攥着衣角，想要挺胸维持职业明星的体面，但在你冷漠如冰的野王气场审视下，膝盖却不由自主地发软。
+你顺手合上沉重的房门，发出“喀哒”一声反锁声。
+
+“白天在采访席上，把MVP归功于自己的操作，说得挺自然啊？”你冷漠地俯视着她，从口袋里抽出昨晚签订的密约战术单，修长而稳定的手指轻轻挑起她的下颌，“今晚十点二十分，暗影暴君刷新前，你的不知火舞准备怎么给我服务？”
+
+林鸢浑身一颤，闭上泛红的双眼，泪水沿着精致的面颊滑落，修长的脖颈彻底仰起迎合你的触碰，从齿缝里溢出沙哑的妥协：“……全凭川哥指挥。赛场……和这里，我都听你的。”`,
+              npcUpdates: [
+                { npcId: 'lin_yuan', favorDelta: 22, submissionDelta: 30, newMood: '在顶层套间玄关完全履行屈辱契约，对你的绝对支配产生深层次的心理依赖与顺从' }
+              ],
+              statChanges: { coldMind: 5, prestige: 4 },
+              newCoreMemories: [
+                '林鸢在顶层套间玄关完全履行密约，确认在赛场与私下均无条件服从林冬夏的调配支配'
+              ],
+              playerStatusUpdate: {
+                condition: '绝对支配 · 契约锁链',
+                focusDelta: 1,
+                heartRateDelta: -2
+              },
+              choices: [
+                {
+                  id: 'c_lin_collar',
+                  text: '修长指尖划过林鸢战队队服微敞的领口，冷漠下达指令：“明天的训练赛不知火舞必须按我给的视野进场，否则玄关协议直接公开。”',
+                  intent: '深度支配林鸢',
+                  hint: '将虚荣女神牢牢掌控在股掌之间'
+                },
+                {
+                  id: 'c_lin_testimony',
+                  text: '当面开启比赛机录音，让眼角泛红的林鸢亲口复述昨晚玄关协议全文作为永久证据。',
+                  intent: '录音固化把柄',
+                  hint: '彻底杜绝林鸢反水可能'
+                },
+                {
+                  id: 'c_lin_tactics',
+                  text: '拉过套间沙发坐下，将战术平板递给她：“别光顾着发抖，把这四套野核保中线眼位的战术背熟。”',
+                  intent: '战术保姆军训',
+                  hint: '恩威并施训练专属工具人中单'
+                },
+                {
+                  id: 'c_lin_dismiss',
+                  text: '将套间门卡收入口袋，冷淡拂袖而去：“今晚表现还算顺从。明天赛场上，别让我失望。”',
+                  intent: '冷酷恩威施压',
+                  hint: '让林鸢在患得患失中彻底臣服'
+                }
+              ]
+            };
+          }
+
+          // Qin Zhi / BP / 战术 / 数据 / 逆风
+          if (text.includes('秦织') || text.includes('BP') || text.includes('数据') || text.includes('教练') || text.includes('复盘') || text.includes('平板')) {
+            return {
+              title: '战术分析室 · 数据坚冰的碎裂与重塑',
+              atmosphere: '巨大的曲面显示屏上投射着昨晚全局经济曲线，冷白色的荧光打在秦织的金丝镜片上。',
+              location: '教练公寓',
+              timeOfDay: '傍晚 18:30',
+              narrative: `“这就是你给我的第三手BP反制方案？”秦织踩着细高跟站在你身后，修长的手指重重按在战术平板边缘。
+你甚至没有回头，只是指尖在屏幕上滑过昨晚对战三冠王穹顶战队第7分14秒的野区俯瞰回放。
+
+“穹顶战队的打野习惯在第8分钟红区刷新时卡草丛视野。如果我第三手拿露娜，放对面的张飞，苏妲拿朵莉亚双大刷新。”你平静的语调如手术刀般精准，“四级进野区，二技能吸住打出月下无限连，三进三出。你那套‘伤害转换率低于140%就不予首发’的模型，算得出极限微操下的无敌帧概率么？”
+
+秦织的呼吸猛地停滞。她低下头，由于靠得极近，西装领口淡淡的冷杉香气悄然钻入鼻腔。
+“你……不仅计算了技能伤害，连对手职业选手的肌肉记忆心理惯性都算进去了？”镜片后那一双向来以绝对理性示人的眸子，此刻第一次浮现出近乎动摇的战栗。
+她缓缓摘下金丝眼镜，揉了揉眉心，声音罕见地低柔下来：“从今天起，青训营的一队战术推演……允许你拥有最高否决权。”`,
+              npcUpdates: [
+                { npcId: 'qin_zhi', favorDelta: 20, submissionDelta: 18, newMood: '数据模型被你颠覆性的实战微操破译，从居高临下的冰山主教转变为暗自仰望你的战术狂徒' }
+              ],
+              statChanges: { jungleControl: 5, coldMind: 4 },
+              newCoreMemories: [
+                '总教练秦织在战术分析室承认林冬夏的心算战术超越传统数据模型，赋予其战术最高否决权'
+              ],
+              playerStatusUpdate: {
+                condition: '战术大脑 · 掌控全盘',
+                focusDelta: 3,
+                heartRateDelta: 1
+              },
+              choices: [
+                {
+                  id: 'c_qin_veto',
+                  text: '顺理成章接管战术平板：“既然给我最高否决权，明天首发阵容与全局BP针对位，全部由我拍板。”',
+                  intent: '接管BP最高权',
+                  hint: '夺取战术分析主管的一票否决权'
+                },
+                {
+                  id: 'c_qin_private',
+                  text: '注视摘下金丝眼镜揉眉心的秦织：“今晚公寓复盘，允许教练你坐在我身边看我的第一视角微操。”',
+                  intent: '私密单独特训',
+                  hint: '拉近与铁血冰山总教练的私密距离'
+                },
+                {
+                  id: 'c_qin_remodel',
+                  text: '直言不讳指出穹顶战队的视野漏洞：“把青训营老旧的打法全废了，我要带他们打窒息野核流。”',
+                  intent: '全队重塑体系',
+                  hint: '在基地树立绝对话语权'
+                },
+                {
+                  id: 'c_qin_challenge',
+                  text: '把比赛机扔到秦织面前：“口说无凭，秦教练亲自和我打一把战术模拟盘，感受一下算力压制？”',
+                  intent: '对战推演教练',
+                  hint: '用纯粹实力在沙盘上彻底击溃秦织'
+                }
+              ]
+            };
+          }
+
+          // Su Da / 合同 / 狐狸 / 商业 / 咖啡 / 转会
+          if (text.includes('苏妲') || text.includes('合同') || text.includes('狐狸') || text.includes('商业') || text.includes('转会') || text.includes('代言')) {
+            return {
+              title: 'VIP商业贵宾厅 · 狐狸眼的试探与臣服',
+              atmosphere: '暗调香薰弥漫在真皮沙发四周，落地窗外是青岚市璀璨的都市天际线。',
+              location: '繁华商场',
+              timeOfDay: '夜晚 20:45',
+              narrative: `“林冬夏弟弟，喝威士忌还是气泡水？”苏妲慵懒地陷在真皮沙发里，修长白皙的双腿交叠，狭长的狐狸眼像是一张无形的大网。
+她修长的指尖轻轻推过来一份黑色烫金的选手经纪合约。
+
+“签字费八位数，外加幻星一队首发专属指挥权。林鸢那只高傲的金丝雀能给你的，姐姐这里能翻十倍给你。”她忽然倾身靠近，红唇几乎贴到你的耳垂，吐息如兰，“不过……昨晚你在大龙坑卡血线把五个人头全喂给不知火舞的录像，我这里可是有4K特写哦。野王弟弟，你到底用什么手段，把那只傲慢的天鹅驯服成那个样子的？”
+
+你面无表情地伸出手，端起桌上的冰水饮尽，目光平视着她近在咫尺的狐狸眼：“想让我签字？先让你手底下的一队辅助，在比赛里学会开局三秒把全图视野点亮。商业合同留着给二流选手画饼吧，苏总监。”
+
+苏妲微微一窒，旋即爆发出低沉而欢愉的娇笑。她眼眸深处没有被拒绝的愠怒，反而泛起极致危险的慕强欲望：“好烈的野王……姐姐就喜欢你这种骨头硬的。”`,
+              npcUpdates: [
+                { npcId: 'su_da', favorDelta: 22, submissionDelta: 15, newMood: '商业诱惑被你轻易看穿并反制，对你那种无视资本掌控的野性产生了更深的慕强占有欲' }
+              ],
+              statChanges: { prestige: 8, coldMind: 3 },
+              newCoreMemories: [
+                '商业总监苏妲在贵宾厅抛出千万合同试探，被林冬夏当场反客为主，苏妲慕强占有欲激增'
+              ],
+              playerStatusUpdate: {
+                condition: '傲视资本 · 锋芒毕露',
+                focusDelta: 2,
+                heartRateDelta: 3
+              },
+              choices: [
+                {
+                  id: 'c_suda_counter',
+                  text: '伸手按住苏妲递来的合同边缘，冷笑道：“八位数签字费不够，我还要幻星电竞俱乐部30%的赛事分红。”',
+                  intent: '反客为主狮子大开口',
+                  hint: '极致反制苏妲的商业拉扯'
+                },
+                {
+                  id: 'c_suda_ear',
+                  text: '倾身靠近苏妲泛红的耳垂：“想独占我的第一视角？那苏总监今晚得亲自来我房间拿未剪辑版母带。”',
+                  intent: '反客为主暧昧调戏',
+                  hint: '利用苏妲的慕强占有欲拉扯其心智'
+                },
+                {
+                  id: 'c_suda_assist',
+                  text: '正色要求苏妲在比赛中配合：“赛场上你的大乔朵莉亚必须无条件以我的野核路线为第一优先级。”',
+                  intent: '野辅联动约定',
+                  hint: '锁定一队首发辅助的绝对保护'
+                },
+                {
+                  id: 'c_suda_leave',
+                  text: '饮尽冰水起身离开沙发：“合同改好了再来找我，现在我要回基地带队打训练赛了。”',
+                  intent: '傲慢离席掌全局',
+                  hint: '让狐狸商业总监体会求而不得的焦灼'
+                }
+              ]
+            };
+          }
+
+          // General / Default
+          return {
+            title: '青训战术巡弋 · 暗涌博弈',
+            atmosphere: '基地内的电竞主机嗡鸣不绝，各路新秀与一队首发的视线在玻璃走廊间暗流涌动。',
+            location: LOCATIONS.find(l => l.id === loc)?.name || '青训中心',
+            timeOfDay: gameState.timeOfDay,
+            narrative: `你在基地内冷漠踱步，修长的手指自然摩挲着特调防滑指套。
+
+针对你的决策，训练室里立刻掀起了连锁反应。四位女主角的目光与心智在空气中激烈碰撞——林鸢在私下里极力掩饰着套间密约带来的心惊肉跳；苏妲借着商业观察员的身份寸步不离地打量你的操作节奏；秦织在战术平板上频繁刷新着你的微操参数；而沐沐则在座位上气鼓鼓地调试着比赛用机，随时准备再次发起较量。
+
+青训选秀营的残酷丛林法则正在你脚下延展，所有规则与节奏，正一步步落入你的绝对算计之中。`,
+            npcUpdates: [
+              { npcId: 'lin_yuan', favorDelta: 4, submissionDelta: 5, newMood: '在你的审视下心跳加速，时刻忧虑私密把柄' },
+              { npcId: 'mu_mu', favorDelta: 3, submissionDelta: 2, newMood: '咬牙盯着你的每一个动作，不甘示弱' }
+            ],
+            statChanges: { coldMind: 2, mechanics: 2 },
+            newCoreMemories: [
+              `在${LOCATIONS.find(l => l.id === loc)?.name || '基地'}中展开主动博弈：${text.slice(0, 30)}`
+            ],
+            playerStatusUpdate: {
+              condition: '绝对冷静 · 节奏巡弋',
+              focusDelta: 1,
+              heartRateDelta: 0
+            },
+            choices: [
+              {
+                id: 'c_gen_mumu',
+                text: '走向训练机位，当场插上外设向沐沐发起墨家机关道公孙离vs澜Solo挑战。',
+                intent: '约战沐沐Solo',
+                hint: '在王者荣耀1v1中正面挫败傲娇射手'
+              },
+              {
+                id: 'c_gen_qin',
+                text: '走向秦织的教练工位，交出自己破译的战术平板直接质询第三手BP克制链。',
+                intent: '质询秦织BP',
+                hint: '以超越版本的数据模型动摇教练认知'
+              },
+              {
+                id: 'c_gen_su',
+                text: '走向靠在门框边的苏妲，正面戳破其商业拉扯并提出反向合同条件。',
+                intent: '反制苏妲狐狸眼',
+                hint: '直戳商业总监的慕强占有欲'
+              },
+              {
+                id: 'c_gen_lin',
+                text: '隔着玻璃长廊出示口袋里的玄关房卡与密约协议，对林鸢施加心理震慑。',
+                intent: '出示林鸢玄关房卡',
+                hint: '激活客体把柄让虚荣女王当众体会臣服'
+              }
+            ]
+          };
+        }
+
+        function applyResult(res, actionLabel) {
+          gameState.isLoading = false;
+
+          // 1. Stats
+          if (res.statChanges) {
+            Object.keys(res.statChanges).forEach((k) => {
+              if (gameState.stats[k] !== undefined) {
+                gameState.stats[k] = Math.min(100, Math.max(10, gameState.stats[k] + res.statChanges[k]));
+              }
+            });
+          }
+
+          // 2. NPCs
+          if (res.npcUpdates) {
+            res.npcUpdates.forEach((up) => {
+              const npc = gameState.npcs[up.npcId];
+              if (npc) {
+                if (up.favorDelta) npc.favor = Math.min(100, Math.max(0, npc.favor + up.favorDelta));
+                if (up.submissionDelta) npc.submission = Math.min(100, Math.max(0, npc.submission + up.submissionDelta));
+                if (up.newMood) npc.memory = up.newMood;
+                if (up.newSecret && !npc.secrets.includes(up.newSecret)) npc.secrets.push(up.newSecret);
+              }
+            });
+          }
+
+          // 3. Objects
+          if (res.objectUpdates && res.objectUpdates.add) {
+            res.objectUpdates.add.forEach((obj) => {
+              if (!gameState.objects.some(o => o.id === obj.id)) {
+                gameState.objects.push(obj);
+              }
+            });
+          }
+
+          // 4. Permanent Core Memories (防失忆核心机制)
+          if (res.newCoreMemories && Array.isArray(res.newCoreMemories)) {
+            res.newCoreMemories.forEach(mem => {
+              if (typeof mem === 'string' && mem.trim() && !gameState.coreMemories.some(m => m.content === mem.trim())) {
+                gameState.coreMemories.push({
+                  id: 'mem_' + Date.now() + '_' + Math.random().toString(36).slice(2, 6),
+                  tag: '推演锚定',
+                  role: '关键事实',
+                  content: mem.trim(),
+                  pinned: true,
+                  time: gameState.timeOfDay
+                });
+                showToast('🧠 [AI记忆已固化] ' + (mem.length > 18 ? mem.slice(0, 18) + '...' : mem));
+              }
+            });
+          }
+
+          // 5. Player Status Update
+          if (res.playerStatusUpdate) {
+            const pUp = res.playerStatusUpdate;
+            if (pUp.condition) gameState.playerProfile.condition = pUp.condition;
+            if (pUp.focusDelta) gameState.playerProfile.focusLevel = Math.min(100, Math.max(20, gameState.playerProfile.focusLevel + pUp.focusDelta));
+            if (pUp.heartRateDelta) gameState.playerProfile.heartRate = Math.min(140, Math.max(55, gameState.playerProfile.heartRate + pUp.heartRateDelta));
+            if (pUp.newBuff && pUp.newBuff.name) {
+              if (!gameState.playerProfile.activeBuffs.some(b => b.name === pUp.newBuff.name)) {
+                gameState.playerProfile.activeBuffs.push(pUp.newBuff);
+                showToast('⚡ 获得新战术特质: ' + pUp.newBuff.name);
+              }
+            }
+          }
+
+          // 6. Scene
+          gameState.currentScene = {
+            title: res.title || gameState.currentScene.title,
+            atmosphere: res.atmosphere || gameState.currentScene.atmosphere,
+            narrative: res.narrative,
+            choices: res.choices || []
+          };
+
+          if (res.timeOfDay) gameState.timeOfDay = res.timeOfDay;
+          gameState.dialogueHistory.push({ role: 'player', content: actionLabel });
+          gameState.dialogueHistory.push({ role: 'narrator', content: res.narrative });
+
+          triggerAutoSave();
+          render();
+        }
+
+        // --- View Renderers ---
+        function render() {
+          const app = document.getElementById('app-container');
+          if (!app) return;
+
+          switch (gameState.stage) {
+            case 'TITLE':
+              renderTitleView(app);
+              break;
+            case 'DRAFT_SETUP':
+              renderDraftSetupView(app);
+              break;
+            case 'GAMEPLAY':
+            default:
+              renderGameplayView(app);
+              break;
+          }
+        }
+
+        function renderTitleView(c) {
+          const auto = getAutoSave();
+
+          c.innerHTML = `
+            <div style="flex: 1; padding: 1.5rem 1.25rem; display: flex; flex-direction: column; justify-content: space-between;">
+              <!-- Minimalist Top Bar -->
+              <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.65rem; color: var(--text-muted); font-family: ui-monospace, SFMono-Regular, monospace;">
+                <div style="display: flex; align-items: center; gap: 0.4rem;">
+                  <span style="display: inline-block; width: 6px; height: 6px; background: #00f0ff; box-shadow: 0 0 8px #00f0ff;"></span>
+                  <span style="color: #67e8f9; font-weight: 800; letter-spacing: 0.1em;">KPL // SCOUT CYBER-AZURE</span>
+                </div>
+                <button id="btn-home-sound" style="background: none; border: none; color: var(--text-muted); font-size: 0.65rem; font-family: monospace; cursor: pointer;">
+                  ${soundEnabled ? '🔊 ON' : '🔇 OFF'}
+                </button>
+              </div>
+
+              <!-- High-End Center Branding (Cyber Azure Theme) -->
+              <div style="text-align: center; margin: auto 0; padding: 1.5rem 0;">
+                <div style="width: 44px; height: 44px; margin: 0 auto 1rem; background: linear-gradient(135deg, rgba(0, 240, 255, 0.25) 0%, rgba(8, 15, 28, 0.9) 100%); border: 1px solid #00f0ff; display: flex; align-items: center; justify-content: center; color: #00f0ff; font-size: 1.25rem; font-weight: 900; box-shadow: 0 0 25px rgba(0, 240, 255, 0.35);">
+                  川
+                </div>
+                <h1 style="font-size: 3rem; font-weight: 900; letter-spacing: 0.16em; color: white; margin-bottom: 0.2rem; text-shadow: 0 0 40px rgba(0, 240, 255, 0.45); font-family: var(--font-serif);">
+                  赤霄
+                </h1>
+                <div style="font-size: 0.65rem; font-weight: 800; letter-spacing: 0.35em; color: var(--accent-cyan); font-family: ui-monospace, SFMono-Regular, monospace; margin-bottom: 0.6rem;">
+                  CHIXIAO · UNDERDOG RULE
+                </div>
+                <div style="width: 32px; height: 1px; background: #00f0ff; margin: 0 auto 1.5rem; opacity: 0.7;"></div>
+
+                <div style="display: flex; flex-direction: column; gap: 0.55rem; max-width: 250px; margin: 0 auto;">
+                  ${auto ? `
+                    <button id="btn-cont" class="btn-primary" style="width: 100%; justify-content: space-between; padding: 0.7rem 1rem;">
+                      <span style="font-size: 0.85rem;">继续推演</span>
+                      <span style="font-size: 0.65rem; font-family: monospace; opacity: 0.8;">RESUME ›</span>
+                    </button>
+                  ` : ''}
+
+                  <button id="btn-new" class="${auto ? 'btn-secondary' : 'btn-primary'}" style="width: 100%; justify-content: space-between; padding: 0.7rem 1rem;">
+                    <span style="font-size: 0.85rem;">进入选秀</span>
+                    <span style="font-size: 0.65rem; font-family: monospace; opacity: 0.8;">DRAFT ›</span>
+                  </button>
+
+                  <button id="btn-saves" class="btn-subtle" style="width: 100%; padding: 0.45rem 0.75rem; justify-content: space-between;">
+                    <span style="font-size: 0.75rem;">本地档案</span>
+                    <span style="font-size: 0.6rem; font-family: monospace; opacity: 0.7;">SAVE ›</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Bottom Minimal Heroine Tokens -->
+              <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.3rem; text-align: center; border-top: 1px solid #162b49; padding-top: 0.65rem;">
+                <div class="card" style="padding: 0.35rem 0.2rem; cursor: pointer; border-color: #1e355b;" id="token-lin">
+                  <div style="font-size: 0.75rem; font-weight: 900; color: #38bdf8;">林鸢</div>
+                  <div style="font-size: 0.55rem; color: var(--text-muted); font-family: monospace;">MID</div>
+                </div>
+                <div class="card" style="padding: 0.35rem 0.2rem; cursor: pointer; border-color: #1e355b;" id="token-su">
+                  <div style="font-size: 0.75rem; font-weight: 900; color: #a78bfa;">苏妲</div>
+                  <div style="font-size: 0.55rem; color: var(--text-muted); font-family: monospace;">SUP</div>
+                </div>
+                <div class="card" style="padding: 0.35rem 0.2rem; cursor: pointer; border-color: #1e355b;" id="token-qin">
+                  <div style="font-size: 0.75rem; font-weight: 900; color: #60a5fa;">秦织</div>
+                  <div style="font-size: 0.55rem; color: var(--text-muted); font-family: monospace;">BP</div>
+                </div>
+                <div class="card" style="padding: 0.35rem 0.2rem; cursor: pointer; border-color: #1e355b;" id="token-mu">
+                  <div style="font-size: 0.75rem; font-weight: 900; color: #fbbf24;">沐沐</div>
+                  <div style="font-size: 0.55rem; color: var(--text-muted); font-family: monospace;">ADC</div>
+                </div>
+              </div>
+            </div>
+            ${renderAllModals()}
+          `;
+
+          const soundBtn = document.getElementById('btn-home-sound');
+          if (soundBtn) soundBtn.onclick = toggleSound;
+
+          const btnC = document.getElementById('btn-cont');
+          if (btnC) btnC.onclick = () => { playSfx('confirm'); loadFromSlot(auto); };
+
+          document.getElementById('btn-new').onclick = () => {
+            playSfx('confirm');
+            gameState.stage = 'DRAFT_SETUP';
+            render();
+          };
+
+          document.getElementById('btn-saves').onclick = () => {
+            playSfx('click');
+            gameState.ui.showSaveModal = true;
+            render();
+          };
+
+          ['token-lin', 'token-su', 'token-qin', 'token-mu'].forEach(id => {
+            const el = document.getElementById(id);
+            if (el) el.onclick = () => { playSfx('click'); gameState.ui.showNPCModal = true; render(); };
+          });
+
+          attachModals();
+        }
+
+        function renderDraftSetupView(c) {
+          c.innerHTML = `
+            <div style="flex: 1; padding: 1rem 1.25rem; display: flex; flex-direction: column;">
+              <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-subtle); padding-bottom: 0.5rem; margin-bottom: 0.75rem;">
+                <button id="btn-back-title" style="background: none; color: var(--text-secondary); font-size: 0.75rem;">← 返回</button>
+                <span style="font-size: 0.65rem; color: var(--text-muted); font-family: monospace;">KPL DRAFT // CONTRACT</span>
+              </div>
+
+              <div style="margin-bottom: 0.75rem;">
+                <h2 style="font-size: 1.15rem; font-weight: 900; color: white;">职业选秀签约协议</h2>
+                <p style="font-size: 0.7rem; color: var(--text-muted); margin-top: 0.15rem;">反向挑选权生效中。请确认选手代号、主战位置与俱乐部合同。</p>
+              </div>
+
+              <!-- Name -->
+              <div class="card" style="padding: 0.65rem; margin-bottom: 0.65rem;">
+                <label style="display: block; font-size: 0.65rem; color: var(--text-muted); margin-bottom: 0.2rem;">官方代号</label>
+                <div style="display: flex; gap: 0.4rem;">
+                  <input id="input-cname" type="text" value="${gameState.characterName}" placeholder="姓名..." style="flex: 1; background: #060b13; border: 1px solid var(--border-color); padding: 0.35rem 0.55rem; color: white; font-size: 0.8rem; outline: none;" />
+                  <span style="display: flex; align-items: center; padding: 0.35rem 0.55rem; background: #0f1c32; border: 1px solid #1e355b; font-family: monospace; font-size: 0.75rem; color: #00f0ff; font-weight: bold;">ID: 川</span>
+                </div>
+              </div>
+
+              <!-- Select Role -->
+              <div class="card" style="padding: 0.65rem; margin-bottom: 0.65rem;">
+                <label style="display: block; font-size: 0.65rem; color: var(--text-muted); margin-bottom: 0.35rem;">首发位置</label>
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.3rem;">
+                  ${ROLES.map(r => `
+                    <button class="role-btn ${r.id === gameState.selectedRole ? 'role-btn-active' : ''}" data-role-id="${r.id}" style="padding: 0.35rem; font-size: 0.7rem; text-align: center; border: 1px solid ${r.id === gameState.selectedRole ? '#00f0ff' : 'var(--border-color)'}; background: ${r.id === gameState.selectedRole ? 'rgba(0,240,255,0.15)' : 'rgba(12,21,38,0.6)'}; color: ${r.id === gameState.selectedRole ? '#00f0ff' : 'var(--text-secondary)'}; font-family: monospace;">
+                      ${r.id} // ${r.label.split(' ')[0]}
+                    </button>
+                  `).join('')}
+                </div>
+              </div>
+
+              <!-- Select Team Contract -->
+              <div class="card" style="padding: 0.65rem; margin-bottom: 0.65rem;">
+                <label style="display: block; font-size: 0.65rem; color: var(--text-muted); margin-bottom: 0.35rem;">俱乐部合同</label>
+                <div style="display: flex; flex-direction: column; gap: 0.4rem;">
+                  ${TEAMS.map(t => `
+                    <div class="team-card" data-team-id="${t.id}" style="cursor: pointer; padding: 0.5rem 0.65rem; border: 1px solid ${t.id === gameState.selectedTeam ? '#00f0ff' : 'var(--border-color)'}; background: ${t.id === gameState.selectedTeam ? 'rgba(14,28,50,0.7)' : 'rgba(10,18,32,0.4)'};">
+                      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.15rem;">
+                        <strong style="font-size: 0.75rem; color: white;">${t.name}</strong>
+                        <span class="badge badge-cyan">${t.badge.split(' · ')[0]}</span>
+                      </div>
+                      <p style="font-size: 0.65rem; color: var(--text-secondary); line-height: 1.35;">${t.desc}</p>
+                    </div>
+                  `).join('')}
+                </div>
+              </div>
+
+              <div style="margin-top: auto; padding-top: 0.4rem;">
+                <button id="btn-confirm-draft" class="btn-primary" style="width: 100%;">
+                  <span>签署合同 · 开启摸底实战</span> →
+                </button>
+              </div>
+            </div>
+            ${renderAllModals()}
+          `;
+
+          document.getElementById('btn-back-title').onclick = () => {
+            playSfx('click');
+            gameState.stage = 'TITLE';
+            render();
+          };
+
+          document.getElementById('input-cname').oninput = (e) => {
+            gameState.characterName = e.target.value.trim() || '林冬夏';
+          };
+
+          c.querySelectorAll('.role-btn').forEach(btn => {
+            btn.onclick = () => {
+              playSfx('click');
+              gameState.selectedRole = btn.getAttribute('data-role-id');
+              render();
+            };
+          });
+
+          c.querySelectorAll('.team-card').forEach(el => {
+            el.onclick = () => {
+              playSfx('click');
+              gameState.selectedTeam = el.getAttribute('data-team-id');
+              render();
+            };
+          });
+
+          document.getElementById('btn-confirm-draft').onclick = () => {
+            playSfx('confirm');
+            gameState.stage = 'GAMEPLAY';
+            triggerAutoSave();
+            render();
+          };
+
+          attachModals();
+        }
+
+        function renderGameplayView(c) {
+          const currentLoc = LOCATIONS.find(l => l.id === gameState.location) || LOCATIONS[0];
+          const currentTeam = TEAMS.find(t => t.id === gameState.selectedTeam) || TEAMS[0];
+          const scene = gameState.currentScene;
+
+          c.innerHTML = `
+            <!-- Top High-End Esports HUD Bar -->
+            <header class="hud-header">
+              <div style="display: flex; align-items: center; gap: 0.4rem;">
+                <div style="width: 22px; height: 22px; background: linear-gradient(135deg, #0284c7, #070e1b); border: 1px solid #00f0ff; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 900; color: #00f0ff;">
+                  川
+                </div>
+                <div style="font-size: 0.75rem; font-weight: 800; color: white; font-family: monospace;">
+                  ${gameState.characterName}
+                </div>
+              </div>
+
+              <!-- Location & Time Coordinate (Minimal) -->
+              <div style="font-size: 0.65rem; color: var(--text-muted); font-family: ui-monospace, SFMono-Regular, monospace; display: flex; align-items: center; gap: 0.25rem;">
+                <span style="color: #00f0ff;">●</span>
+                <span style="color: var(--text-secondary);">${currentLoc.name.slice(0, 3)}</span>
+                <span style="opacity: 0.3;">/</span>
+                <span>${gameState.timeOfDay.slice(-5)}</span>
+              </div>
+
+              <!-- Icon Quick Controls -->
+              <div style="display: flex; align-items: center; gap: 0.2rem;">
+                <button id="btn-top-memory" class="icon-btn" title="AI核心记忆库" style="position: relative;">
+                  🧠
+                  <span style="position: absolute; top: 1px; right: 1px; width: 6px; height: 6px; border-radius: 50% !important; background: #00f0ff; box-shadow: 0 0 6px #00f0ff;"></span>
+                </button>
+                <button id="btn-top-status" class="icon-btn" title="选手状态档案">📊</button>
+                <button id="btn-top-map" class="icon-btn" title="地图坐标">📍</button>
+                <button id="btn-top-npcs" class="icon-btn" title="四女主心智">👥</button>
+                <button id="btn-top-save" class="icon-btn" title="存档">💾</button>
+                <button id="btn-top-audio" class="icon-btn" title="声音">${soundEnabled ? '🔊' : '🔇'}</button>
+                <button id="btn-top-home" class="icon-btn" title="主页">✕</button>
+              </div>
+            </header>
+
+            <!-- Gameplay Main Container -->
+            <div style="flex: 1; padding: 0.5rem 0.75rem; display: flex; flex-direction: column;">
+              
+              <!-- Comprehensive Player Status Bar (玩家状态栏) -->
+              <div id="player-status-bar" style="cursor: pointer; background: linear-gradient(90deg, #091322 0%, #0d1b33 50%, #091322 100%); border: 1px solid #1e3a5f; margin-bottom: 0.5rem; padding: 0.4rem 0.55rem; display: flex; flex-direction: column; gap: 0.3rem; box-shadow: 0 4px 14px rgba(0,0,0,0.5);">
+                <!-- Top Line: Identity, Current Mood/Condition & Detail Button -->
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                  <div style="display: flex; align-items: center; gap: 0.35rem;">
+                    <span style="display: inline-block; width: 5px; height: 5px; background: #00f0ff; box-shadow: 0 0 8px #00f0ff;"></span>
+                    <span style="font-size: 0.72rem; font-weight: 800; color: #fff; font-family: monospace;">【${gameState.characterName} · ${gameState.selectedRole}】</span>
+                    <span class="badge badge-cyan" style="font-size: 0.58rem; padding: 0.05rem 0.25rem;">${gameState.playerProfile.rankScore.split('·')[0]}</span>
+                  </div>
+                  <div style="display: flex; align-items: center; gap: 0.3rem;">
+                    <span class="badge badge-blue" style="font-size: 0.58rem; padding: 0.05rem 0.25rem;">${gameState.playerProfile.condition}</span>
+                    <span style="font-size: 0.58rem; color: #00f0ff; font-family: monospace; text-decoration: underline;">[状态档案 📋]</span>
+                  </div>
+                </div>
+
+                <!-- Telemetry Metrics Grid (微操、控图、冷彻、声望、心率、专注) -->
+                <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 0.2rem; background: rgba(6, 12, 22, 0.7); padding: 0.2rem 0.3rem; border: 1px solid #142846; text-align: center;">
+                  <div>
+                    <div style="font-size: 0.5rem; color: var(--text-muted); font-family: monospace;">APM微操</div>
+                    <div style="font-size: 0.72rem; font-weight: 900; color: #38bdf8; font-family: monospace;">${gameState.stats.mechanics}</div>
+                  </div>
+                  <div>
+                    <div style="font-size: 0.5rem; color: var(--text-muted); font-family: monospace;">CTRL控图</div>
+                    <div style="font-size: 0.72rem; font-weight: 900; color: #67e8f9; font-family: monospace;">${gameState.stats.jungleControl}</div>
+                  </div>
+                  <div>
+                    <div style="font-size: 0.5rem; color: var(--text-muted); font-family: monospace;">MIND冷彻</div>
+                    <div style="font-size: 0.72rem; font-weight: 900; color: #818cf8; font-family: monospace;">${gameState.stats.coldMind}</div>
+                  </div>
+                  <div>
+                    <div style="font-size: 0.5rem; color: var(--text-muted); font-family: monospace;">REP声望</div>
+                    <div style="font-size: 0.72rem; font-weight: 900; color: #fbbf24; font-family: monospace;">${gameState.stats.prestige}</div>
+                  </div>
+                  <div>
+                    <div style="font-size: 0.5rem; color: var(--text-muted); font-family: monospace;">PULSE心率</div>
+                    <div style="font-size: 0.72rem; font-weight: 900; color: #34d399; font-family: monospace;">${gameState.playerProfile.heartRate}b</div>
+                  </div>
+                  <div>
+                    <div style="font-size: 0.5rem; color: var(--text-muted); font-family: monospace;">FOCUS专注</div>
+                    <div style="font-size: 0.72rem; font-weight: 900; color: #00f0ff; font-family: monospace;">${gameState.playerProfile.focusLevel}%</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Toast notice -->
+              ${gameState.recentToast ? `
+                <div style="background: rgba(10, 24, 45, 0.95); border: 1px solid rgba(0, 240, 255, 0.5); padding: 0.35rem 0.65rem; font-size: 0.7rem; color: #67e8f9; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.35rem;">
+                  <span>🔔</span><span>${gameState.recentToast}</span>
+                </div>
+              ` : ''}
+
+              <!-- Battle Status Dashboard -->
+              <div class="card" style="margin-bottom: 0.65rem; padding: 0.65rem 0.85rem; background: rgba(10, 24, 45, 0.8); border: 1px solid var(--border-subtle);">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                  <div style="font-size: 0.7rem; font-weight: 800; color: var(--accent-cyan); font-family: monospace; display: flex; align-items: center; gap: 0.3rem;">
+                    <span>⚡</span> 实时战况仪表盘 // BATTLE DASHBOARD
+                  </div>
+                  <div style="font-size: 0.6rem; color: var(--text-muted); font-family: monospace;">AI DYNAMIC METRICS</div>
+                </div>
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem;">
+                  <div>
+                    <div style="display: flex; justify-content: space-between; font-size: 0.65rem; font-family: monospace; margin-bottom: 0.2rem;">
+                      <span style="color: #cbd5e1;">KDA贡献度</span>
+                      <span style="color: #38bdf8; font-weight: 700;">${gameState.battleMetrics?.kdaContribution ?? 88}%</span>
+                    </div>
+                    <div style="width: 100%; height: 5px; background: rgba(255,255,255,0.08); overflow: hidden;">
+                      <div style="width: ${gameState.battleMetrics?.kdaContribution ?? 88}%; height: 100%; background: linear-gradient(90deg, #00f0ff, #3b82f6); transition: width 0.5s ease;"></div>
+                    </div>
+                  </div>
+                  <div>
+                    <div style="display: flex; justify-content: space-between; font-size: 0.65rem; font-family: monospace; margin-bottom: 0.2rem;">
+                      <span style="color: #cbd5e1;">野区侵略度</span>
+                      <span style="color: #34d399; font-weight: 700;">${gameState.battleMetrics?.jungleAggression ?? 92}%</span>
+                    </div>
+                    <div style="width: 100%; height: 5px; background: rgba(255,255,255,0.08); overflow: hidden;">
+                      <div style="width: ${gameState.battleMetrics?.jungleAggression ?? 92}%; height: 100%; background: linear-gradient(90deg, #10b981, #34d399); transition: width 0.5s ease;"></div>
+                    </div>
+                  </div>
+                  <div>
+                    <div style="display: flex; justify-content: space-between; font-size: 0.65rem; font-family: monospace; margin-bottom: 0.2rem;">
+                      <span style="color: #cbd5e1;">兵线控制率</span>
+                      <span style="color: #a78bfa; font-weight: 700;">${gameState.battleMetrics?.laneControlRate ?? 82}%</span>
+                    </div>
+                    <div style="width: 100%; height: 5px; background: rgba(255,255,255,0.08); overflow: hidden;">
+                      <div style="width: ${gameState.battleMetrics?.laneControlRate ?? 82}%; height: 100%; background: linear-gradient(90deg, #8b5cf6, #a78bfa); transition: width 0.5s ease;"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Narrative Card -->
+              <div class="card" style="flex: 1; display: flex; flex-direction: column; justify-content: space-between; margin-bottom: 0.65rem; min-height: 280px;">
+                <div>
+                  <div style="border-bottom: 1px solid var(--border-subtle); padding-bottom: 0.4rem; margin-bottom: 0.65rem; display: flex; justify-content: space-between; align-items: center;">
+                    <h2 style="font-size: 0.9rem; font-weight: 800; color: white; display: flex; align-items: center; gap: 0.35rem;">
+                      <span style="display: inline-block; width: 3px; height: 12px; background: var(--accent-cyan);"></span>
+                      ${scene.title}
+                    </h2>
+                    <span style="font-size: 0.6rem; color: var(--text-muted); font-family: ui-monospace, SFMono-Regular, monospace;">${currentLoc.name}</span>
+                  </div>
+
+                  <div style="display: flex; flex-direction: column; gap: 0.75rem; font-size: 0.8rem; line-height: 1.75; font-family: var(--font-serif); color: #e4e4e7; text-align: justify;">
+                    ${scene.narrative.split('\n\n').map(p => {
+                      const isLin = p.includes('林鸢') && (p.includes('“') || p.includes('”'));
+                      const isSu = p.includes('苏妲') && (p.includes('“') || p.includes('”'));
+                      const isQin = p.includes('秦织') && (p.includes('“') || p.includes('”'));
+                      const isMu = p.includes('沐沐') && (p.includes('“') || p.includes('”'));
+
+                      let border = '';
+                      let speaker = '';
+                      if (isLin) {
+                        border = 'border-left: 2px solid #38bdf8; padding-left: 0.55rem; background: rgba(56, 189, 248, 0.05);';
+                        speaker = '<span class="badge badge-blue" style="font-size: 0.55rem; margin-bottom: 0.2rem; display: inline-block;">林鸢 · MID</span><br/>';
+                      } else if (isSu) {
+                        border = 'border-left: 2px solid #a78bfa; padding-left: 0.55rem; background: rgba(167, 139, 250, 0.05);';
+                        speaker = '<span class="badge badge-purple" style="font-size: 0.55rem; margin-bottom: 0.2rem; display: inline-block;">苏妲 · SUP</span><br/>';
+                      } else if (isQin) {
+                        border = 'border-left: 2px solid #60a5fa; padding-left: 0.55rem; background: rgba(96, 165, 250, 0.05);';
+                        speaker = '<span class="badge badge-cyan" style="font-size: 0.55rem; margin-bottom: 0.2rem; display: inline-block;">秦织 · BP</span><br/>';
+                      } else if (isMu) {
+                        border = 'border-left: 2px solid #fbbf24; padding-left: 0.55rem; background: rgba(251, 191, 36, 0.05);';
+                        speaker = '<span class="badge badge-amber" style="font-size: 0.55rem; margin-bottom: 0.2rem; display: inline-block;">沐沐 · ADC</span><br/>';
+                      }
+
+                      return `<p style="${border}">${speaker}${p}</p>`;
+                    }).join('')}
+                  </div>
+                </div>
+
+                ${gameState.isLoading ? `
+                  <div style="text-align: center; color: var(--accent-cyan); font-size: 0.7rem; font-family: monospace; padding-top: 0.85rem;" class="animate-pulse">
+                    ⚡ 算力博弈推演中 // SIMULATING CYBER TACTICS...
+                  </div>
+                ` : ''}
+              </div>
+
+              <!-- Decision Area: 纯自由输入驱动对策与剧情推进 -->
+              <div style="margin-top: auto; display: flex; flex-direction: column; gap: 0.4rem;">
+                <div style="display: flex; justify-content: space-between; align-items: center; padding: 0 0.15rem;">
+                  <span style="font-size: 0.65rem; color: var(--accent-cyan); font-family: ui-monospace, SFMono-Regular, monospace; letter-spacing: 0.1em; font-weight: 700;">
+                    // PLAYER TACTICAL COMMAND // 玩家自主指令
+                  </span>
+                  <div style="display: flex; gap: 0.35rem; align-items: center;">
+                    <span style="font-size: 0.6rem; color: var(--text-muted); font-family: monospace;">[Enter发送 / Shift+Enter换行]</span>
+                  </div>
+                </div>
+
+                <!-- Custom Direct Input Form -->
+                <div style="background: rgba(10, 18, 34, 0.95); border: 1px solid var(--border-color); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.45rem; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);">
+                  <div style="display: flex; gap: 0.45rem; align-items: flex-end;">
+                    <textarea 
+                      id="input-custom-text" 
+                      rows="2"
+                      placeholder="掌控你的剧情走向：输入对林鸢/苏妲/秦织/沐沐的言语挑衅、逼迫密约、王者荣耀微操对决（如拿澜卡死公孙离回伞、野区让渡算计）、私密套间互动或前往任意场景..." 
+                      style="flex: 1; padding: 0.45rem 0.6rem; color: #fff; font-size: 0.78rem; line-height: 1.45; background: rgba(5,11,20,0.6); border: 1px solid rgba(0,240,255,0.2); outline: none; resize: none; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;"
+                      ${gameState.isLoading ? 'disabled' : ''}
+                    ></textarea>
+                    <button 
+                      id="btn-submit-text" 
+                      class="btn-primary" 
+                      style="padding: 0.55rem 0.9rem; font-size: 0.78rem; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.15rem; min-width: 72px;"
+                      ${gameState.isLoading ? 'disabled' : ''}
+                    >
+                      <span style="font-weight: 700; font-family: monospace;">${gameState.isLoading ? '推演中' : '推进'}</span>
+                      <span style="font-size: 0.55rem; opacity: 0.75; font-family: monospace;">EXECUTE</span>
+                    </button>
+                  </div>
+
+                  <!-- AI Dynamically Generated 4 Quick Tactical Choices (微操速选: 每回合AI根据剧情生成4条选项) -->
+                  <div style="display: flex; flex-direction: column; gap: 0.35rem; border-top: 1px dashed rgba(0,240,255,0.2); padding-top: 0.4rem;">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                      <div style="display: flex; align-items: center; gap: 0.35rem;">
+                        <span style="display: inline-block; width: 6px; height: 6px; background: #00f0ff; box-shadow: 0 0 6px #00f0ff;"></span>
+                        <span style="font-size: 0.64rem; color: #67e8f9; font-family: monospace; font-weight: 800;">
+                          AI推演微操速选 (本局4条动态对策):
+                        </span>
+                      </div>
+                      <span style="font-size: 0.55rem; color: var(--text-muted); font-family: monospace;">点击填入输入框，支持自由编辑</span>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.35rem;">
+                      ${((scene.choices && scene.choices.length > 0) ? scene.choices.slice(0, 4) : [
+                        { id: 'c1', text: '戴上专属指套，掏出特调比赛机：“墨家机关道Solo？我拿澜，输了老老实实当我的专属看门狗。”', intent: '机关道Solo(澜)', hint: '正面摧毁沐沐' },
+                        { id: 'c2', text: '迎上秦织冷冽的审视，递上破译的战术平板：“抗压局没意义，看一眼我复盘的第三手BP克制链。”', intent: '震碎秦织BP模型', hint: '动摇冰山教练' },
+                        { id: 'c3', text: '走到苏妲身侧耳畔：“狐狸眼看够了么？大乔公孙离体系打得不错，想拉我进幻星先开定金。”', intent: '试探苏妲慕强软肋', hint: '反制商业拉扯' },
+                        { id: 'c4', text: '隔着玻璃对准林鸢视线，从口袋里露出昨晚签下的套间玄关密约与房卡一角，冷漠微勾嘴角。', intent: '出示林鸢玄关房卡', hint: '激活客体把柄' }
+                      ]).map((c, i) => {
+                        const badgeColor = i === 0 ? 'badge-cyan' : (i === 1 ? 'badge-blue' : (i === 2 ? 'badge-purple' : 'badge-amber'));
+                        const safeText = (c.text || '').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+                        return `
+                          <button type="button" class="btn-quick-prompt" data-prompt="${safeText}" style="padding: 0.35rem 0.45rem; background: rgba(8, 18, 34, 0.75); border: 1px solid #1e3a5f; color: #e2e8f0; cursor: pointer; text-align: left; display: flex; flex-direction: column; gap: 0.2rem; transition: all 0.15s ease;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                              <span class="badge ${badgeColor}" style="font-size: 0.52rem; padding: 0.05rem 0.25rem;">${c.intent || ('对策 0' + (i + 1))}</span>
+                              ${c.hint ? `<span style="font-size: 0.52rem; color: var(--text-muted); font-family: monospace; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 90px;">${c.hint}</span>` : ''}
+                            </div>
+                            <div style="font-size: 0.67rem; color: #cbd5e1; line-height: 1.35; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; word-break: break-all;">
+                              ${c.text}
+                            </div>
+                          </button>
+                        `;
+                      }).join('')}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            </div>
+                </div>
+              </div>
+
+            </div>
+            ${renderAllModals()}
+          `;
+
+          // Top Header Events
+          document.getElementById('btn-top-memory').onclick = () => { playSfx('click'); gameState.ui.showMemoryModal = true; render(); };
+          document.getElementById('btn-top-map').onclick = () => { playSfx('click'); gameState.ui.showMapModal = true; render(); };
+          document.getElementById('btn-top-npcs').onclick = () => { playSfx('click'); gameState.ui.showNPCModal = true; render(); };
+          document.getElementById('btn-top-status').onclick = () => { playSfx('click'); gameState.ui.showStatusPanel = true; render(); };
+          document.getElementById('btn-top-save').onclick = () => { playSfx('click'); gameState.ui.showSaveModal = true; render(); };
+          document.getElementById('btn-top-audio').onclick = toggleSound;
+          document.getElementById('btn-top-home').onclick = () => { playSfx('click'); gameState.stage = 'TITLE'; render(); };
+
+          // Player Status Bar Click
+          const pBar = document.getElementById('player-status-bar');
+          if (pBar) {
+            pBar.onclick = () => { playSfx('click'); gameState.ui.showStatusPanel = true; render(); };
+          }
+
+          // Custom Input Submit Handler
+          const inputEl = document.getElementById('input-custom-text');
+          const submitBtn = document.getElementById('btn-submit-text');
+
+          const doSubmit = () => {
+            const val = inputEl ? inputEl.value.trim() : '';
+            if (!val || gameState.isLoading) return;
+            playSfx('confirm');
+            runStoryStep(val);
+          };
+
+          if (submitBtn) submitBtn.onclick = doSubmit;
+
+          if (inputEl) {
+            inputEl.onkeydown = (e) => {
+              if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                doSubmit();
+              }
+            };
+          }
+
+          // Quick prompt chips click
+          c.querySelectorAll('.btn-quick-prompt').forEach(btn => {
+            btn.onclick = () => {
+              playSfx('click');
+              const promptText = btn.getAttribute('data-prompt');
+              if (inputEl && promptText) {
+                inputEl.value = promptText;
+                inputEl.focus();
+              }
+            };
+          });
+
+          attachModals();
+        }
+
+        // --- Modals System ---
+        function renderAllModals() {
+          let html = '';
+
+          // 1. AI Memory Vault Modal (AI长效防失忆记忆中枢)
+          if (gameState.ui.showMemoryModal) {
+            html += `
+              <div class="drawer-overlay" id="modal-overlay">
+                <div class="drawer-content">
+                  <div class="drawer-header">
+                    <div style="display: flex; align-items: center; gap: 0.4rem;">
+                      <span style="color: #00f0ff; font-size: 1rem;">🧠</span>
+                      <strong style="font-size: 0.85rem; color: white;">AI长效防失忆记忆中枢 (MEMORY VAULT)</strong>
+                    </div>
+                    <button class="modal-close-x" style="background: none; color: var(--text-muted); font-size: 1.25rem;">×</button>
+                  </div>
+                  <div class="drawer-body">
+                    <!-- Status Strip -->
+                    <div style="background: rgba(0, 240, 255, 0.08); border: 1px solid rgba(0, 240, 255, 0.3); padding: 0.45rem 0.65rem; display: flex; align-items: center; justify-content: space-between;">
+                      <div style="display: flex; align-items: center; gap: 0.4rem;">
+                        <span style="width: 7px; height: 7px; background: #00f0ff; box-shadow: 0 0 8px #00f0ff; display: inline-block;"></span>
+                        <span style="font-size: 0.7rem; color: #67e8f9; font-weight: 700;">记忆锚定引擎激活中</span>
+                      </div>
+                      <span style="font-size: 0.62rem; color: #94a3b8; font-family: monospace;">已固化 ${gameState.coreMemories.length} 条事实 / 防失忆保护</span>
+                    </div>
+
+                    <p style="font-size: 0.68rem; color: var(--text-muted); line-height: 1.45;">
+                      记录在此的所有事实、契约与把柄，将随每次推演注入AI核心指令，保证无论聊多少轮模型都绝不遗忘历史协议与人物关系。
+                    </p>
+
+                    <!-- Add Custom Anchor Pin Form -->
+                    <div style="background: rgba(14, 25, 45, 0.85); border: 1px solid #1e355b; padding: 0.55rem; display: flex; flex-direction: column; gap: 0.4rem;">
+                      <div style="font-size: 0.68rem; font-weight: 700; color: #38bdf8; display: flex; align-items: center; gap: 0.3rem;">
+                        <span>📌</span><span>手动固定新的记忆锚点 (Pin Memory)</span>
+                      </div>
+                      <div style="display: flex; gap: 0.35rem;">
+                        <input type="text" id="input-pin-memory" placeholder="输入需永久记住的事实，如：林鸢答应今晚复盘后独自在训练室等我..." style="flex: 1; padding: 0.4rem 0.55rem; font-size: 0.72rem; color: #fff; background: rgba(5,11,20,0.6); border: 1px solid #1e355b; outline: none;" />
+                        <button id="btn-add-pin-memory" class="btn-primary" style="padding: 0.4rem 0.75rem; font-size: 0.7rem; font-weight: 700; white-space: nowrap;">
+                          固定记忆
+                        </button>
+                      </div>
+                    </div>
+
+                    <!-- Memory List -->
+                    <div style="display: flex; flex-direction: column; gap: 0.45rem;">
+                      <div style="font-size: 0.65rem; color: var(--text-muted); font-weight: 700; letter-spacing: 0.05em;">
+                        // CURRENT ANCHORED MEMORIES // 当前已锚定核心记忆
+                      </div>
+                      ${gameState.coreMemories.map((m, idx) => `
+                        <div class="card" style="padding: 0.65rem; display: flex; flex-direction: column; gap: 0.3rem; border-color: #1e355b;">
+                          <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <div style="display: flex; align-items: center; gap: 0.35rem;">
+                              <span class="badge badge-cyan" style="font-size: 0.55rem;">${m.tag || '核心事实'}</span>
+                              ${m.role ? `<span class="badge badge-purple" style="font-size: 0.55rem;">${m.role}</span>` : ''}
+                              <span style="font-size: 0.6rem; color: var(--text-muted); font-family: monospace;">${m.time || '持久有效'}</span>
+                            </div>
+                            ${!m.pinned ? `
+                              <button class="btn-subtle" data-del-mem="${idx}" style="font-size: 0.6rem; padding: 0.1rem 0.3rem; color: #94a3b8;">
+                                移除
+                              </button>
+                            ` : `
+                              <span style="font-size: 0.55rem; color: #00f0ff; font-family: monospace;">[不可动摇主线]</span>
+                            `}
+                          </div>
+                          <div style="font-size: 0.74rem; color: #e2e8f0; line-height: 1.45; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+                            ${m.content}
+                          </div>
+                        </div>
+                      `).join('')}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            `;
+          }
+
+          // 2. Map Modal (可视化战术沙盘地图漫游)
+          if (gameState.ui.showMapModal) {
+            html += `
+              <div class="drawer-overlay" id="modal-overlay">
+                <div class="drawer-content" style="max-width: 680px;">
+                  <div class="drawer-header">
+                    <strong style="font-size: 0.85rem; color: white; letter-spacing: 1px;">🗺️ 战术沙盘地图漫游与区域热区导航 (TACTICAL MAP & REGION TRAVEL)</strong>
+                    <button class="modal-close-x" style="background: none; color: var(--text-muted); font-size: 1.25rem; cursor: pointer;">×</button>
+                  </div>
+                  <div class="drawer-body" style="max-height: 80vh; overflow-y: auto;">
+                    <p style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0.75rem;">
+                      点击下方可视化沙盘地图中的战术区域或坐标卡片，即可实时前往对应区域，触发专属环境沉浸与女主突发心智遭遇事件。
+                    </p>
+                    
+                    <!-- Visual Map Generated Asset -->
+                    <div style="position: relative; border: 1px solid var(--border-color); background: #0b0e14; margin-bottom: 1rem; box-shadow: 0 0 20px rgba(0, 240, 255, 0.15);">
+                      <div style="position: absolute; top: 0.5rem; left: 0.5rem; background: rgba(0,0,0,0.8); border: 1px solid var(--accent-cyan); padding: 0.2rem 0.5rem; font-size: 0.65rem; color: var(--accent-cyan); font-family: monospace; z-index: 2;">
+                        STATUS: LIVE_TACTICAL_MAP // ACTIVE
+                      </div>
+                      <img src="/src/assets/images/tactical_game_map_1791897112690.jpg" alt="Tactical Esports Map" style="width: 100%; height: auto; display: block; filter: contrast(1.05) brightness(0.95);" referrerPolicy="no-referrer" />
+                      
+                      <!-- Hotspot Clickable Pins over Visual Map -->
+                      <div style="padding: 0.6rem; background: rgba(15,20,30,0.95); border-top: 1px solid var(--border-color); display: flex; flex-wrap: wrap; gap: 0.4rem; justify-content: center;">
+                        <button data-move-to="training_center" style="background: rgba(0,240,255,0.15); border: 1px solid var(--accent-cyan); color: #fff; font-size: 0.7rem; padding: 0.3rem 0.65rem; cursor: pointer; font-weight: bold;">⚡ 青训中心</button>
+                        <button data-move-to="arena" style="background: rgba(0,240,255,0.15); border: 1px solid var(--accent-cyan); color: #fff; font-size: 0.7rem; padding: 0.3rem 0.65rem; cursor: pointer; font-weight: bold;">🏟️ 电竞馆主舞台</button>
+                        <button data-move-to="mall" style="background: rgba(0,240,255,0.15); border: 1px solid var(--accent-cyan); color: #fff; font-size: 0.7rem; padding: 0.3rem 0.65rem; cursor: pointer; font-weight: bold;">🛍️ 商业赞助区</button>
+                        <button data-move-to="park" style="background: rgba(0,240,255,0.15); border: 1px solid var(--accent-cyan); color: #fff; font-size: 0.7rem; padding: 0.3rem 0.65rem; cursor: pointer; font-weight: bold;">🌲 湿地湖畔</button>
+                        <button data-move-to="dorm" style="background: rgba(0,240,255,0.15); border: 1px solid var(--accent-cyan); color: #fff; font-size: 0.7rem; padding: 0.3rem 0.65rem; cursor: pointer; font-weight: bold;">🛏️ 选手宿舍</button>
+                        <button data-move-to="apartment" style="background: rgba(0,240,255,0.15); border: 1px solid var(--accent-cyan); color: #fff; font-size: 0.7rem; padding: 0.3rem 0.65rem; cursor: pointer; font-weight: bold;">🏢 教练套间</button>
+                      </div>
+                    </div>
+
+                    <div style="font-size: 0.75rem; font-weight: bold; color: var(--text-main); margin-bottom: 0.5rem; letter-spacing: 0.5px;">
+                      --- 详细区域档案 (REGION DOSSIER) ---
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.5rem;">
+                      ${LOCATIONS.map(loc => `
+                        <button class="card" data-move-to="${loc.id}" style="padding: 0.6rem; cursor: pointer; text-align: left; border-color: ${loc.id === gameState.location ? '#00f0ff' : 'var(--border-color)'}; background: ${loc.id === gameState.location ? 'rgba(0,240,255,0.12)' : 'var(--bg-card)'}; transition: all 0.2s;">
+                          <div style="font-size: 0.8rem; font-weight: bold; color: white; margin-bottom: 0.2rem; display: flex; align-items: center; justify-content: space-between;">
+                            <span>${loc.icon} ${loc.name}</span>
+                            ${loc.id === gameState.location ? '<span style="font-size: 0.6rem; color: var(--accent-cyan); border: 1px solid var(--accent-cyan); padding: 0.05rem 0.3rem;">当前位置</span>' : ''}
+                          </div>
+                          <p style="font-size: 0.65rem; color: var(--text-muted); line-height: 1.3;">${loc.desc}</p>
+                        </button>
+                      `).join('')}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            `;
+          }
+
+          // 3. NPC Modal (四女主深度心智 & 王者荣耀战术定位)
+          if (gameState.ui.showNPCModal) {
+            html += `
+              <div class="drawer-overlay" id="modal-overlay">
+                <div class="drawer-content">
+                  <div class="drawer-header">
+                    <strong style="font-size: 0.8rem; color: white;">👥 四女主深度心智与王者战术档案</strong>
+                    <button class="modal-close-x" style="background: none; color: var(--text-muted); font-size: 1.25rem;">×</button>
+                  </div>
+                  <div class="drawer-body">
+                    ${Object.values(gameState.npcs).map(npc => `
+                      <div class="card" style="padding: 0.75rem;">
+                        <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.4rem;">
+                          <div style="width: 34px; height: 34px; border-radius: 0; background: linear-gradient(135deg, #0e1e38, #08111f); border: 1px solid #1e3a5f; display: flex; align-items: center; justify-content: center; font-weight: bold; color: #00f0ff; font-size: 0.9rem;">${npc.avatar}</div>
+                          <div style="flex: 1;">
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                              <span style="font-size: 0.85rem; font-weight: bold; color: white;">
+                                ${npc.name}
+                                ${npc.id === 'lin_yuan' ? `<span class="badge badge-cyan" style="margin-left: 4px;">玄关密约</span>` : ''}
+                                ${npc.id === 'su_da' ? `<span class="badge badge-purple" style="margin-left: 4px;">腹黑狐狸</span>` : ''}
+                                ${npc.id === 'qin_zhi' ? `<span class="badge badge-blue" style="margin-left: 4px;">铁血BP</span>` : ''}
+                                ${npc.id === 'mu_mu' ? `<span class="badge badge-amber" style="margin-left: 4px;">傲娇状元</span>` : ''}
+                              </span>
+                              <span style="font-size: 0.65rem; color: #38bdf8; font-family: monospace;">${npc.kplRole || npc.role}</span>
+                            </div>
+                            <div style="font-size: 0.65rem; color: var(--text-muted);">${npc.role}</div>
+                          </div>
+                        </div>
+
+                        ${npc.signatureHeroes ? `
+                          <div style="display: flex; align-items: center; gap: 0.25rem; flex-wrap: wrap; margin-bottom: 0.45rem; background: rgba(0,0,0,0.4); padding: 0.25rem 0.4rem; border: 1px solid #142846;">
+                            <span style="font-size: 0.65rem; color: #fbbf24; font-weight: bold;">招牌英雄:</span>
+                            ${npc.signatureHeroes.map(h => `<span class="badge badge-amber" style="padding: 0.05rem 0.3rem; font-size: 0.6rem;">${h}</span>`).join('')}
+                          </div>
+                        ` : ''}
+
+                        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.4rem; text-align: center; margin-bottom: 0.45rem;">
+                          <div style="background: #08111f; padding: 0.35rem; border: 1px solid #142846; font-size: 0.65rem;">
+                            <span style="color: var(--text-muted);">好感羁绊</span>
+                            <div style="font-weight: bold; color: #38bdf8; font-family: monospace; font-size: 0.85rem;">${npc.favor}%</div>
+                          </div>
+                          <div style="background: #08111f; padding: 0.35rem; border: 1px solid #142846; font-size: 0.65rem;">
+                            <span style="color: var(--text-muted);">屈服/支配度</span>
+                            <div style="font-weight: bold; color: #00f0ff; font-family: monospace; font-size: 0.85rem;">${npc.submission}%</div>
+                          </div>
+                        </div>
+
+                        <div style="background: #08111f; padding: 0.4rem 0.6rem; border: 1px solid #142846; font-size: 0.7rem; color: var(--text-secondary); margin-bottom: 0.4rem;">
+                          <strong style="color: #60a5fa; font-size: 0.65rem;">🧠 最新深度心理印记:</strong> “${npc.memory}”
+                        </div>
+
+                        ${npc.secrets && npc.secrets.length > 0 ? `
+                          <div style="background: rgba(0, 240, 255, 0.06); border: 1px solid rgba(0, 240, 255, 0.25); padding: 0.35rem 0.5rem; font-size: 0.65rem; color: #bae6fd;">
+                            <strong>🔒 掌握把柄/内幕:</strong> ${npc.secrets.join('；')}
+                          </div>
+                        ` : ''}
+                      </div>
+                    `).join('')}
+                  </div>
+                </div>
+              </div>
+            `;
+          }
+
+          // 4. Comprehensive Player Dossier Modal (选手完整状态档案)
+          if (gameState.ui.showStatusPanel) {
+            const currentLoc = LOCATIONS.find(l => l.id === gameState.location) || LOCATIONS[0];
+            const currentTeam = TEAMS.find(t => t.id === gameState.selectedTeam) || TEAMS[0];
+
+            html += `
+              <div class="drawer-overlay" id="modal-overlay">
+                <div class="drawer-content">
+                  <div class="drawer-header">
+                    <div style="display: flex; align-items: center; gap: 0.4rem;">
+                      <span style="color: #38bdf8; font-size: 1rem;">📊</span>
+                      <strong style="font-size: 0.85rem; color: white;">选手全维度状态与战术档案 (PLAYER DOSSIER)</strong>
+                    </div>
+                    <button class="modal-close-x" style="background: none; color: var(--text-muted); font-size: 1.25rem;">×</button>
+                  </div>
+                  <div class="drawer-body font-mono" style="font-size: 0.72rem; color: #d4d4d8; line-height: 1.6;">
+                    
+                    <!-- Basic Identity & Ranking -->
+                    <div class="card" style="padding: 0.75rem; border-color: #1e3a5f;">
+                      <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.4rem;">
+                        <div>
+                          <div style="font-size: 0.95rem; font-weight: 900; color: #fff;">
+                            ${gameState.characterName} <span style="font-size: 0.75rem; color: #00f0ff; font-weight: 700;">(代号: 川 / Chuan)</span>
+                          </div>
+                          <div style="font-size: 0.65rem; color: #94a3b8;">
+                            所属分路: <span style="color: #38bdf8; font-weight: 700;">${gameState.selectedRole} (野核与全局掌控)</span> | 战队: <span style="color: #67e8f9;">${currentTeam.name.split(' ')[0]}</span>
+                          </div>
+                        </div>
+                        <div style="text-align: right;">
+                          <span class="badge badge-cyan" style="font-size: 0.65rem;">${gameState.playerProfile.rating}</span>
+                          <div style="font-size: 0.65rem; color: #fbbf24; font-weight: 700; margin-top: 0.15rem;">${gameState.playerProfile.rankScore}</div>
+                        </div>
+                      </div>
+                      <div style="background: rgba(10, 20, 36, 0.7); padding: 0.4rem 0.6rem; border: 1px solid #142846; font-size: 0.68rem; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.35rem;">
+                        <span>赛事签约金: <strong style="color: #34d399;">¥${gameState.funds}</strong></span>
+                        <span>天梯KDA: <strong style="color: #38bdf8;">${gameState.playerProfile.kda}</strong></span>
+                        <span>手速峰值: <strong style="color: #f59e0b;">${gameState.playerProfile.peakApm} APM</strong></span>
+                      </div>
+                    </div>
+
+                    <!-- Physiological & Psychological Telemetry -->
+                    <div class="card" style="padding: 0.75rem; border-color: #1e3a5f;">
+                      <div style="color: #38bdf8; font-weight: bold; margin-bottom: 0.35rem; display: flex; justify-content: space-between;">
+                        <span>💓 实时生理与心智机能监控</span>
+                        <span style="color: #00f0ff;">【${gameState.playerProfile.condition}】</span>
+                      </div>
+                      <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.4rem;">
+                        <div style="background: rgba(10, 20, 36, 0.6); padding: 0.4rem; border: 1px solid #142846;">
+                          <div style="display: flex; justify-content: space-between; color: var(--text-muted); font-size: 0.65rem;">
+                            <span>脑波专注度 (Focus)</span>
+                            <span style="color: #00f0ff; font-weight: bold;">${gameState.playerProfile.focusLevel}%</span>
+                          </div>
+                          <div style="width: 100%; height: 4px; background: #08111f; margin-top: 0.25rem;">
+                            <div style="width: ${gameState.playerProfile.focusLevel}%; height: 100%; background: linear-gradient(90deg, #0284c7, #00f0ff);"></div>
+                          </div>
+                        </div>
+                        <div style="background: rgba(10, 20, 36, 0.6); padding: 0.4rem; border: 1px solid #142846;">
+                          <div style="display: flex; justify-content: space-between; color: var(--text-muted); font-size: 0.65rem;">
+                            <span>静态心率 (Pulse)</span>
+                            <span style="color: #34d399; font-weight: bold;">${gameState.playerProfile.heartRate} bpm</span>
+                          </div>
+                          <div style="width: 100%; height: 4px; background: #08111f; margin-top: 0.25rem;">
+                            <div style="width: ${(gameState.playerProfile.heartRate / 120) * 100}%; height: 100%; background: linear-gradient(90deg, #10b981, #34d399);"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Active Traits & Buffs -->
+                    <div class="card" style="padding: 0.75rem; border-color: #1e3a5f;">
+                      <div style="color: #a78bfa; font-weight: bold; margin-bottom: 0.35rem;">
+                        ⚡ 激活中的战术特质与光环 (Active Buffs)
+                      </div>
+                      <div style="display: flex; flex-direction: column; gap: 0.35rem;">
+                        ${gameState.playerProfile.activeBuffs.map(b => `
+                          <div style="background: rgba(15, 23, 42, 0.6); padding: 0.35rem 0.5rem; border: 1px solid #1e3a5f; display: flex; flex-direction: column; gap: 0.15rem;">
+                            <div style="color: #67e8f9; font-weight: bold; font-size: 0.7rem;">• 【${b.name}】</div>
+                            <div style="font-size: 0.65rem; color: #94a3b8;">${b.desc}</div>
+                          </div>
+                        `).join('')}
+                      </div>
+                    </div>
+
+                    <!-- Held Tactical Objects & Leverage -->
+                    <div class="card" style="padding: 0.75rem; border-color: #1e3a5f;">
+                      <div style="color: #fbbf24; font-weight: bold; margin-bottom: 0.35rem;">
+                        🔒 随身私密道具与支配把柄 (${gameState.objects.length}件)
+                      </div>
+                      ${gameState.objects.map(o => `
+                        <div style="margin-bottom: 0.35rem; background: rgba(10, 20, 36, 0.6); padding: 0.35rem 0.5rem; border: 1px solid #142846;">
+                          <div style="color: #fde68a; font-weight: bold;">• 【${o.name}】 <span class="badge badge-amber" style="font-size: 0.55rem;">${o.riskLevel}</span></div>
+                          <div style="color: #94a3b8; font-size: 0.65rem;">${o.description}</div>
+                        </div>
+                      `).join('')}
+                    </div>
+
+                    <!-- Heroine Subjugation & Sentiment Ledger -->
+                    <div class="card" style="padding: 0.75rem; border-color: #1e3a5f;">
+                      <div style="color: #38bdf8; font-weight: bold; margin-bottom: 0.35rem;">
+                        👥 四女主好感羁绊与屈服度一览
+                      </div>
+                      ${Object.values(gameState.npcs).map(n => `
+                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.25rem 0; border-bottom: 1px solid rgba(255,255,255,0.05);">
+                          <span>${n.name} (${n.kplRole || n.role})</span>
+                          <div style="display: flex; gap: 0.4rem; font-family: monospace;">
+                            <span style="color: #38bdf8;">好感:${n.favor}%</span>
+                            <span style="color: #00f0ff;">屈服:${n.submission}%</span>
+                          </div>
+                        </div>
+                      `).join('')}
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            `;
+          }
+
+          // 5. Save System Modal
+          if (gameState.ui.showSaveModal) {
+            const slots = getSaveSlots();
+            const auto = getAutoSave();
+
+            html += `
+              <div class="drawer-overlay" id="modal-overlay">
+                <div class="drawer-content">
+                  <div class="drawer-header">
+                    <strong style="font-size: 0.8rem; color: white;">💾 战术数据档案管理 (SAVES)</strong>
+                    <button class="modal-close-x" style="background: none; color: var(--text-muted); font-size: 1.25rem;">×</button>
+                  </div>
+                  <div class="drawer-body">
+                    <div class="card" style="border-style: dashed; padding: 0.6rem 0.75rem;">
+                      <div style="display: flex; justify-content: space-between; font-size: 0.7rem; color: var(--text-muted); margin-bottom: 0.25rem;">
+                        <span>[实时自动存档]</span>
+                        <span>${auto ? auto.updatedAt : '暂无'}</span>
+                      </div>
+                      ${auto ? `
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                          <div style="font-size: 0.75rem; color: white;">${auto.title}</div>
+                          <button class="btn-primary" data-load-auto="true" style="padding: 0.3rem 0.6rem; font-size: 0.7rem;">载入</button>
+                        </div>
+                      ` : '<div style="font-size: 0.7rem; color: var(--text-muted);">推演中会自动实时存储</div>'}
+                    </div>
+
+                    ${[1, 2, 3].map(slotNum => {
+                      const s = slots[slotNum - 1];
+                      return `
+                        <div class="card" style="padding: 0.6rem 0.75rem;">
+                          <div style="display: flex; justify-content: space-between; font-size: 0.7rem; color: var(--text-muted); margin-bottom: 0.25rem;">
+                            <strong>SLOT 0${slotNum}</strong>
+                            <span>${s ? s.updatedAt : '空'}</span>
+                          </div>
+                          ${s ? `
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                              <div>
+                                <div style="font-size: 0.8rem; font-weight: bold; color: white;">${s.title}</div>
+                                <div style="font-size: 0.65rem; color: var(--text-muted);">${s.name} · ${s.role} · 林鸢屈服: ${s.npcs?.lin_yuan?.submission || 0}%</div>
+                              </div>
+                              <div style="display: flex; gap: 0.35rem;">
+                                ${gameState.stage === 'GAMEPLAY' ? `<button class="btn-subtle" data-save-slot="${slotNum}">覆盖</button>` : ''}
+                                <button class="btn-primary" data-load-slot="${slotNum}" style="padding: 0.3rem 0.6rem; font-size: 0.7rem;">载入</button>
+                                <button class="btn-subtle" data-del-slot="${slotNum}" style="color: #64748b;">删</button>
+                              </div>
+                            </div>
+                          ` : `
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                              <span style="font-size: 0.75rem; color: var(--text-muted);">空槽位</span>
+                              ${gameState.stage === 'GAMEPLAY' ? `<button class="btn-primary" data-save-slot="${slotNum}" style="padding: 0.3rem 0.6rem; font-size: 0.7rem;">保存至此</button>` : ''}
+                            </div>
+                          `}
+                        </div>
+                      `;
+                    }).join('')}
+
+                    <div style="display: flex; gap: 0.5rem; margin-top: 0.5rem;">
+                      <button id="btn-export-saves" class="btn-secondary" style="flex: 1; font-size: 0.7rem; padding: 0.4rem;">导出本地 JSON</button>
+                      <button id="btn-import-saves" class="btn-secondary" style="flex: 1; font-size: 0.7rem; padding: 0.4rem;">导入 JSON</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            `;
+          }
+
+          return html;
+        }
+
+        function attachModals() {
+          document.querySelectorAll('.modal-close-x').forEach(btn => {
+            btn.onclick = () => {
+              gameState.ui.showMapModal = false;
+              gameState.ui.showNPCModal = false;
+              gameState.ui.showStatusPanel = false;
+              gameState.ui.showSaveModal = false;
+              gameState.ui.showMemoryModal = false;
+              render();
+            };
+          });
+
+          const overlay = document.getElementById('modal-overlay');
+          if (overlay) {
+            overlay.onclick = (e) => {
+              if (e.target === overlay) {
+                gameState.ui.showMapModal = false;
+                gameState.ui.showNPCModal = false;
+                gameState.ui.showStatusPanel = false;
+                gameState.ui.showSaveModal = false;
+                gameState.ui.showMemoryModal = false;
+                render();
+              }
+            };
+          }
+
+          // Memory Add & Delete
+          const btnAddMem = document.getElementById('btn-add-pin-memory');
+          const inputMem = document.getElementById('input-pin-memory');
+          if (btnAddMem && inputMem) {
+            btnAddMem.onclick = () => {
+              const val = inputMem.value.trim();
+              if (!val) return;
+              playSfx('confirm');
+              gameState.coreMemories.push({
+                id: 'custom_' + Date.now(),
+                tag: '玩家指令',
+                role: '核心固化',
+                content: val,
+                pinned: true,
+                time: gameState.timeOfDay
+              });
+              inputMem.value = '';
+              showToast('已固化至AI核心记忆库！');
+              triggerAutoSave();
+              render();
+            };
+          }
+
+          document.querySelectorAll('[data-del-mem]').forEach(btn => {
+            btn.onclick = () => {
+              const idx = parseInt(btn.getAttribute('data-del-mem'), 10);
+              if (!isNaN(idx)) {
+                gameState.coreMemories.splice(idx, 1);
+                showToast('已从AI记忆库中移除');
+                triggerAutoSave();
+                render();
+              }
+            };
+          });
+
+          // Map Travel Click
+          document.querySelectorAll('[data-move-to]').forEach(btn => {
+            btn.onclick = () => {
+              const target = btn.getAttribute('data-move-to');
+              gameState.ui.showMapModal = false;
+              runStoryStep(null, target);
+            };
+          });
+
+          // Save / Load / Delete Slots
+          document.querySelectorAll('[data-save-slot]').forEach(b => {
+            b.onclick = () => saveToSlot(parseInt(b.getAttribute('data-save-slot'), 10));
+          });
+          document.querySelectorAll('[data-load-slot]').forEach(b => {
+            b.onclick = () => {
+              const slots = getSaveSlots();
+              loadFromSlot(slots[parseInt(b.getAttribute('data-load-slot'), 10) - 1]);
+            };
+          });
+          const loadAuto = document.querySelector('[data-load-auto]');
+          if (loadAuto) {
+            loadAuto.onclick = () => loadFromSlot(getAutoSave());
+          }
+          document.querySelectorAll('[data-del-slot]').forEach(b => {
+            b.onclick = () => {
+              const num = parseInt(b.getAttribute('data-del-slot'), 10);
+              localStorage.removeItem(SLOT_KEY + num);
+              showToast('已删除槽位 0' + num);
+            };
+          });
+
+          // Export/Import
+          const expBtn = document.getElementById('btn-export-saves');
+          if (expBtn) {
+            expBtn.onclick = () => {
+              const data = {
+                auto: getAutoSave(),
+                slots: getSaveSlots(),
+                exportedAt: new Date().toISOString()
+              };
+              const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+              const url = URL.createObjectURL(blob);
+              const a = document.createElement('a');
+              a.href = url;
+              a.download = `chixiao_saves_${Date.now()}.json`;
+              a.click();
+              URL.revokeObjectURL(url);
+              showToast('存档已成功导出为文件');
+            };
+          }
+
+          const impBtn = document.getElementById('btn-import-saves');
+          if (impBtn) {
+            impBtn.onclick = () => {
+              const str = prompt('请粘贴您导出的 JSON 存档数据：');
+              if (!str) return;
+              try {
+                const parsed = JSON.parse(str);
+                if (parsed.auto) localStorage.setItem(AUTOSAVE_KEY, JSON.stringify(parsed.auto));
+                if (Array.isArray(parsed.slots)) {
+                  parsed.slots.forEach((s, i) => {
+                    if (s) localStorage.setItem(SLOT_KEY + (i + 1), JSON.stringify(s));
+                  });
+                }
+                showToast('存档已成功导入！');
+                render();
+              } catch {
+                alert('非法的 JSON 存档数据格式！');
+              }
+            };
+          }
+        }
+
+        // --- Bootstrap Game Engine ---
+        window.addEventListener('DOMContentLoaded', () => {
+          render();
+        });
+      })();
+    </script>
+  </body>
+</html>
